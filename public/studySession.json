@@ -1,0 +1,164 @@
+[
+  {
+    "id": 1,
+    "sessionTitle": "Introduction to Machine Learning",
+    "tutorName": "Dr. John Doe",
+    "averageRating": 4.8,
+    "sessionDescription": "Learn the basics of machine learning, including algorithms, data processing, and model evaluation.",
+    "registrationStartDate": "2024-06-01",
+    "registrationEndDate": "2024-06-10",
+    "classStartTime": "2024-06-15T10:00:00",
+    "classEndDate": "2024-06-15T12:00:00",
+    "sessionDuration": "2 hours",
+    "registrationFee": "Free",
+    "reviews": [
+      {
+        "studentName": "Alice Smith",
+        "review": "Great introduction to machine learning. Dr. Doe explained the concepts very well.",
+        "rating": 5
+      },
+      {
+        "studentName": "Bob Johnson",
+        "review": "Very informative and engaging session.",
+        "rating": 4.5
+      }
+    ],
+    "bookNowButton": true,
+    "additionalInfo": "Please bring a laptop with Python installed."
+  },
+  {
+    "id": 2,
+    "sessionTitle": "Advanced Python Programming",
+    "tutorName": "Prof. Jane Williams",
+    "averageRating": 4.9,
+    "sessionDescription": "A deep dive into advanced Python programming techniques, including decorators, generators, and context managers.",
+    "registrationStartDate": "2024-06-05",
+    "registrationEndDate": "2024-06-15",
+    "classStartTime": "2024-06-20T14:00:00",
+    "classEndDate": "2024-06-20T16:30:00",
+    "sessionDuration": "2.5 hours",
+    "registrationFee": "$50",
+    "reviews": [
+      {
+        "studentName": "Charlie Brown",
+        "review": "Challenging but very rewarding. I learned a lot of new techniques.",
+        "rating": 5
+      },
+      {
+        "studentName": "Dave Lee",
+        "review": "Excellent session with practical examples.",
+        "rating": 4.8
+      }
+    ],
+    "bookNowButton": true,
+    "additionalInfo": "Previous experience with Python is required."
+  },
+  {
+    "id": 3,
+    "sessionTitle": "Data Visualization with D3.js",
+    "tutorName": "Ms. Sarah Johnson",
+    "averageRating": 4.7,
+    "sessionDescription": "Create stunning visualizations using D3.js. Learn how to bind data to DOM elements and apply various transformations.",
+    "registrationStartDate": "2024-06-10",
+    "registrationEndDate": "2024-06-18",
+    "classStartTime": "2024-06-25T09:00:00",
+    "classEndDate": "2024-06-25T11:00:00",
+    "sessionDuration": "2 hours",
+    "registrationFee": "$30",
+    "reviews": [
+      {
+        "studentName": "Eve Martinez",
+        "review": "Fantastic session on D3.js. Clear and concise.",
+        "rating": 4.5
+      },
+      {
+        "studentName": "Frank White",
+        "review": "Very helpful for creating visualizations.",
+        "rating": 4.7
+      }
+    ],
+    "bookNowButton": true,
+    "additionalInfo": "Basic knowledge of JavaScript is recommended."
+  },
+  {
+    "id": 4,
+    "sessionTitle": "Introduction to Cybersecurity",
+    "tutorName": "Mr. Michael Green",
+    "averageRating": 4.6,
+    "sessionDescription": "Understand the fundamentals of cybersecurity, including threat analysis, risk management, and best practices.",
+    "registrationStartDate": "2024-06-12",
+    "registrationEndDate": "2024-06-20",
+    "classStartTime": "2024-06-28T13:00:00",
+    "classEndDate": "2024-06-28T15:00:00",
+    "sessionDuration": "2 hours",
+    "registrationFee": "$40",
+    "reviews": [
+      {
+        "studentName": "Grace Hall",
+        "review": "Very informative. I feel much more aware of cybersecurity risks now.",
+        "rating": 4.6
+      },
+      {
+        "studentName": "Hank Thomas",
+        "review": "Great introduction to the topic. Highly recommended.",
+        "rating": 4.5
+      }
+    ],
+    "bookNowButton": true,
+    "additionalInfo": "No prior knowledge of cybersecurity required."
+  },
+  {
+    "id": 5,
+    "sessionTitle": "Web Development with React",
+    "tutorName": "Dr. Emily Clark",
+    "averageRating": 4.9,
+    "sessionDescription": "Learn how to build dynamic web applications using React. This session covers components, state management, and hooks.",
+    "registrationStartDate": "2024-06-15",
+    "registrationEndDate": "2024-06-25",
+    "classStartTime": "2024-07-01T10:00:00",
+    "classEndDate": "2024-07-01T12:30:00",
+    "sessionDuration": "2.5 hours",
+    "registrationFee": "$60",
+    "reviews": [
+      {
+        "studentName": "Ivy Wilson",
+        "review": "Excellent session on React. Dr. Clark is very knowledgeable.",
+        "rating": 5
+      },
+      {
+        "studentName": "Jack Brown",
+        "review": "Highly engaging and practical.",
+        "rating": 4.9
+      }
+    ],
+    "bookNowButton": true,
+    "additionalInfo": "Basic knowledge of JavaScript and HTML is required."
+  },
+  {
+    "id": 6,
+    "sessionTitle": "Digital Marketing Strategies",
+    "tutorName": "Ms. Laura Lewis",
+    "averageRating": 4.8,
+    "sessionDescription": "Learn effective digital marketing strategies, including SEO, content marketing, and social media marketing.",
+    "registrationStartDate": "2024-06-18",
+    "registrationEndDate": "2024-06-28",
+    "classStartTime": "2024-07-05T15:00:00",
+    "classEndDate": "2024-07-05T17:00:00",
+    "sessionDuration": "2 hours",
+    "registrationFee": "Free",
+    "reviews": [
+      {
+        "studentName": "Karen Harris",
+        "review": "Very insightful session. Learned a lot of practical tips.",
+        "rating": 4.8
+      },
+      {
+        "studentName": "Larry King",
+        "review": "Great overview of digital marketing strategies.",
+        "rating": 4.7
+      }
+    ],
+    "bookNowButton": true,
+    "additionalInfo": "Suitable for beginners and professionals."
+  }
+]
