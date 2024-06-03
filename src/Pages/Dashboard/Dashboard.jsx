@@ -1,4 +1,5 @@
-import {  NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import { GoSidebarCollapse } from "react-icons/go";
 
 const Dashboard = () => {
   return (
@@ -9,9 +10,9 @@ const Dashboard = () => {
           {/* Page content here */}
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
+            className="drawer-button lg:hidden"
           >
-            Open drawer
+            <GoSidebarCollapse  className="text-4xl"/>
           </label>
         </div>
         <div className="drawer-side">
@@ -32,10 +33,12 @@ const Dashboard = () => {
               <NavLink to={"/dashboard/createNote"}>Create Note</NavLink>
             </li>
             <li>
-              <NavLink to={"/dashboard/ManageNote"}>Manage Personal Note</NavLink>
+              <NavLink to={"/dashboard/ManageNote"}>
+                Manage Personal Note
+              </NavLink>
             </li>
             <li>
-              <NavLink to={"/dashboard/AllMaterials"}>All Materials</NavLink>
+              <NavLink to={"/dashboard/allMaterials"}>All Materials</NavLink>
             </li>
 
             <div className="divider"></div>

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import {
-    GithubAuthProvider,
+  GithubAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   getAuth,
@@ -11,6 +11,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../Firebase/Firebase";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 
@@ -20,6 +21,7 @@ const AuthProvider = ({ children }) => {
   const auth = getAuth(app);
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
+  const axiosPublic = useAxiosPublic();
 
   // create user
 
@@ -62,16 +64,30 @@ const AuthProvider = ({ children }) => {
 
   // observer
 
+  // observer
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
       if (currentUser) {
-        setUser(currentUser);
+        // get token and store client
+        const userInfo = { email: currentUser.email };
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          // console.log(res.data);
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+            setLoading(false);
+          }
+        });
+      } else {
+        localStorage.removeItem("access-token");
+        setLoading(false);
       }
-      setLoading(false);
     });
 
-    return unSubscribe;
-  }, []);
+    return () => {
+      return unsubscribe();
+    };
+  }, [axiosPublic]);
 
   const userInfo = {
     user,

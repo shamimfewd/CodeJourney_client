@@ -7,6 +7,10 @@ import Login from "../Pages/Login/Login";
 import PrivateRoute from "./PrivateRoute";
 import AllProduct from "../Pages/Dashboard/AllProduct";
 import BookedSession from "../Pages/Dashboard/Student/BookedSession";
+// import CreateSession from "../Pages/Dashboard/Student/CreateSession";
+import StudentHome from "../Pages/Dashboard/Student/StudentHome";
+import CreateNote from "../Pages/Dashboard/Student/CreateNote";
+import ManageNote from "../Pages/Dashboard/Student/ManageNote";
 
 const router = createBrowserRouter([
   {
@@ -38,8 +42,24 @@ const router = createBrowserRouter([
     ),
     children: [
       {
+        path: "studentHome",
+        element: <StudentHome />,
+      },
+      {
         path: "bookedSession",
         element: <BookedSession />,
+      },
+      {
+        path: "createNote",
+        element: <CreateNote />,
+      },
+      {
+        path: "manageNote",
+        element: <ManageNote />,
+      },
+      {
+        path: "allMaterials",
+        element: <AllProduct />,
       },
     ],
   },
