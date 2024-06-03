@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -26,6 +26,7 @@ const Register = () => {
             const userInfo = {
               name: data.name,
               email: data.email,
+              role: data.role,
             };
             axiosPublic.post("/users", userInfo).then((res) => {
               if (res.data.insertedId) {
@@ -107,9 +108,9 @@ const Register = () => {
               <option value={"default"} disabled>
                 Register as a
               </option>
-              <option value={"Student"}>Student</option>
-              <option value={"Tutor"}>Tutor</option>
-              <option value={"Admin"}>Admin</option>
+              <option value={"student"}>Student</option>
+              <option value={"tutor"}>Tutor</option>
+              <option value={"admin"}>Admin</option>
             </select>
           </label>
 

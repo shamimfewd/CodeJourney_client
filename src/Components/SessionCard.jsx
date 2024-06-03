@@ -1,5 +1,5 @@
 const SessionCard = ({ card }) => {
-  console.log(card);
+  // console.log(card);
   const { sessionTitle, sessionDescription } = card;
   return (
     <div>

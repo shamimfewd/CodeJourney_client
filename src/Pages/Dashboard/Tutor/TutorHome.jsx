@@ -1,10 +1,10 @@
 import useAuth from "../../../Hooks/useAuth";
 
-const StudentHome = () => {
+const TutorHome = () => {
   const { user } = useAuth();
   return (
     <div>
-      studenthome
+      tutor home
       <h2 className="text-6xl">
         {user?.displayName ? user.displayName : "hi welcome back"}
       </h2>
@@ -12,4 +12,4 @@ const StudentHome = () => {
   );
 };
 
-export default StudentHome;
+export default TutorHome;

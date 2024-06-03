@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Login = () => {
   const { logInUser, GoogleLogIn, GigHubLogIn } = useAuth();
   const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
 
   const {
     register,
@@ -20,6 +22,7 @@ const Login = () => {
       .then(() => {
         // toast.success("login successfully");
         // navigate(location?.state || "/");
+
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -29,25 +32,41 @@ const Login = () => {
 
   const handleGoogleLogIn = () => {
     GoogleLogIn()
-      .then(() => {
+      .then((result) => {
         // if (result.user) {
         //   toast.success("Login Successfully");
         //   navigate(location?.state || "/");
         // }
-        navigate(from, { replace: true });
+
+        const userInfo = {
+          email: result.user?.email,
+          name: result.user?.displayName,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+          navigate(from, { replace: true });
+        });
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
   const handleGithubLogIn = () => {
     GigHubLogIn()
-      .then(() => {
+      .then((result) => {
         // if (result.user) {
         //   toast.success("Login Successfully");
         //   navigate(location?.state || "/");
         // }
-        navigate(from, { replace: true });
+        const userInfo = {
+          email: result.user?.email,
+          name: result.user?.displayName,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+          navigate(from, { replace: true });
+        });
       })
       .catch((error) => {
         console.log(error);

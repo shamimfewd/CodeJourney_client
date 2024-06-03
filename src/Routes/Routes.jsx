@@ -11,6 +11,8 @@ import BookedSession from "../Pages/Dashboard/Student/BookedSession";
 import StudentHome from "../Pages/Dashboard/Student/StudentHome";
 import CreateNote from "../Pages/Dashboard/Student/CreateNote";
 import ManageNote from "../Pages/Dashboard/Student/ManageNote";
+import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
+import TutorHome from "../Pages/Dashboard/Tutor/TutorHome";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +62,20 @@ const router = createBrowserRouter([
       {
         path: "allMaterials",
         element: <AllProduct />,
+      },
+
+      // admin routes
+
+      {
+        path: "adminHome",
+        element: <AdminHome />,
+      },
+
+      // tutor routes
+
+      {
+        path: "tutorHome",
+        element: <TutorHome />,
       },
     ],
   },
