@@ -1,24 +1,29 @@
 const SessionCard = ({ card }) => {
-  // console.log(card);
-  const { sessionTitle, sessionDescription } = card;
+  console.log(card);
+
+  const {
+    title,
+    price,
+    classEnd,
+    description,
+    classStart,
+    registrationEnd,
+    registrationStart,
+    status,
+    tutorEmail,
+    tutorName,
+  } = card;
+
   return (
     <div>
       <div className="flex max-w-md overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
-        {/* <div
-          className="w-1/3 bg-cover"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80')",
-          }}
-        ></div> */}
-
         <div className="w-2/3 p-4 md:p-4">
           <h3 className="text-xl font-bold text-gray-800 dark:text-white">
-            {sessionTitle}
+            {title}
           </h3>
 
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            {sessionDescription}
+            {description}
           </p>
 
           <div className="flex mt-2 item-center">

@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
 import SessionCard from "../../Components/SessionCard";
+import useSessionCard from "../../Hooks/useSessionCard";
 
 const StudySession = () => {
-  const [cards, setCards] = useState([]);
+  const [session] = useSessionCard();
 
-  useEffect(() => {
-    fetch("studySession.json")
-      .then((res) => res.json())
-      .then((data) => setCards(data));
-  }, []);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {cards.map((card) => (
+      {session.map((card) => (
         <SessionCard key={card.id} card={card} />
       ))}
     </div>

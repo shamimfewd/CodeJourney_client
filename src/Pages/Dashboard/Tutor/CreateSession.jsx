@@ -6,10 +6,10 @@ import useAuth from "../../../Hooks/useAuth";
 const CreateSession = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit ,reset} = useForm();
 
   const onSubmit = async (data) => {
-    // reset();
+    reset();
     const menuItem = {
       title: data.title,
       tutorName: data.tutorName,
