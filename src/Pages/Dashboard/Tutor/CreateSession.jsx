@@ -6,7 +6,7 @@ import useAuth from "../../../Hooks/useAuth";
 const CreateSession = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { register, handleSubmit ,reset} = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
     reset();
@@ -14,8 +14,8 @@ const CreateSession = () => {
       title: data.title,
       tutorName: data.tutorName,
       tutorEmail: data.tutorEmail,
-      registrationStart: data.registrationStart,
-      registrationEnd: data.registrationEnd,
+      registrationStart: new Date(data.registrationStart),
+      registrationEnd: new Date(data.registrationEnd),
       description: data.description,
       classStart: data.classStart,
       classEnd: data.classEnd,

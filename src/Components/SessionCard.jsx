@@ -1,7 +1,8 @@
-const SessionCard = ({ card }) => {
-  console.log(card);
+import { Link } from "react-router-dom";
 
+const SessionCard = ({ card }) => {
   const {
+    _id,
     title,
     price,
     classEnd,
@@ -13,6 +14,12 @@ const SessionCard = ({ card }) => {
     tutorEmail,
     tutorName,
   } = card;
+
+  const currentDate = new Date();
+  const regiStart = new Date(registrationStart);
+  const regiEnd = new Date(registrationEnd);
+
+  const isRegistrationOpen = currentDate >= regiStart && currentDate <= regiEnd;
 
   return (
     <div>
@@ -67,12 +74,22 @@ const SessionCard = ({ card }) => {
             <h1 className="text-lg font-bold text-gray-700 dark:text-gray-200 md:text-xl">
               $220
             </h1>
-            <button className="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">
-              Read More
-            </button>
-            <button className="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">
-              On Going
-            </button>
+
+            {isRegistrationOpen ? (
+              <button className="btn text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded ">
+                On Going
+              </button>
+            ) : (
+              <button className="btn hover:none font-bold text-white uppercase transition-colors duration-300 transform bg-red-600 rounded   ">
+                Closed
+              </button>
+            )}
+
+            <Link to={`/details/${_id}`}>
+              <button className="btn text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gray-800 rounded dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none focus:bg-gray-700 dark:focus:bg-gray-600">
+                Read More
+              </button>
+            </Link>
           </div>
         </div>
       </div>

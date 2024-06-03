@@ -14,6 +14,7 @@ import ManageNote from "../Pages/Dashboard/Student/ManageNote";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
 import TutorHome from "../Pages/Dashboard/Tutor/TutorHome";
 import CreateSession from "../Pages/Dashboard/Tutor/CreateSession";
+import SessionDetails from "../Pages/SessionDetails";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/details/:id",
+        element: <SessionDetails />,
+        loader: ()=> fetch('http://localhost:5000/session')
       },
     ],
   },
