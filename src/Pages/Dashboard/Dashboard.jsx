@@ -141,17 +141,7 @@ const Dashboard = () => {
             <NavLink to={"/dashboard/tutorHome"}>Tutor Home</NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/scheduleSession"}>
-              Schedule Session
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/dashboard/manageSessions"}>Manage Sessions</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/dashboard/uploadMaterials"}>
-              Upload Materials
-            </NavLink>
+            <NavLink to={"/dashboard/createSession"}>Create Session</NavLink>
           </li>
         </>
       );

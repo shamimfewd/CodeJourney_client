@@ -13,7 +13,7 @@ const useAxiosSecure = () => {
   axiosSecure.interceptors.request.use(
     function (config) {
       const token = localStorage.getItem("access-token");
-      console.log("request stopped", token);
+      // console.log("request stopped", token);
 
       config.headers.authorization = `Bearer ${token}`;
       return config;

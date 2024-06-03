@@ -13,6 +13,7 @@ import CreateNote from "../Pages/Dashboard/Student/CreateNote";
 import ManageNote from "../Pages/Dashboard/Student/ManageNote";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
 import TutorHome from "../Pages/Dashboard/Tutor/TutorHome";
+import CreateSession from "../Pages/Dashboard/Tutor/CreateSession";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "tutorHome",
         element: <TutorHome />,
+      },
+      {
+        path: "createSession",
+        element: <CreateSession />,
       },
     ],
   },
