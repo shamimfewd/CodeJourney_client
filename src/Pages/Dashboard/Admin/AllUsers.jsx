@@ -1,19 +1,73 @@
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { FaTrashAlt } from "react-icons/fa";
-import { useForm } from "react-hook-form";
+
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+// import { useEffect } from "react";
+// import { useQuery } from "@tanstack/react-query";
+// import axios from "axios";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [], refetch } = useQuery({
-    queryKey: ["users"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/users");
-      return res.data;
-    },
-  });
+  const [allUsers, setAllUsers] = useState([]);
+  const [search, setSearch] = useState("");
+  const [searchText, setSearchText] = useState("");
+
+  // const { data: users = [], refetch } = useQuery({
+  //   queryKey: ["users"],
+  //   queryFn: async () => {
+  //     const res = await axiosSecure.get("/users");
+  //     return res.data;
+  //   },
+  // });
+  console.log(allUsers);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearch(searchText);
+  };
+
+  // // filter data from db
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const { data } = await axios(
+  //       `http://localhost:5000/dashboard/users?search=${search}`
+  //     );
+  //     setAllUsers(data);
+  //   };
+
+  //   getData();
+  // }, [search]);
+
+  // filter
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axiosSecure.get(`/users?search=${search}`);
+        setAllUsers(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [search]);
+
+  // get all data from db
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axiosSecure.get("/users");
+        setAllUsers(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [axiosSecure]);
 
   const handleDelete = (user) => {
     Swal.fire({
@@ -28,54 +82,60 @@ const AllUsers = () => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/users/${user._id}`).then((res) => {
           if (res.data.deletedCount > 0) {
-            refetch();
+            // refetch();
             Swal.fire({
               title: "Deleted!",
               text: "Your file has been deleted.",
               icon: "success",
             });
+
+            const remaining = allUsers.filter((item) => item._id !== user._id);
+            setAllUsers(remaining);
           }
         });
       }
     });
   };
 
-  // const handleMakeAdmin = (user) => {
-  //   axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
-  //     console.log(res.data);
-  //     if (res.data.modifiedCount > 0) {
-  //       refetch();
-  //       Swal.fire({
-  //         position: "top-end",
-  //         icon: "success",
-  //         title: `${user.name} is an admin new!`,
-  //         showConfirmButton: false,
-  //         timer: 1500,
-  //       });
-  //     }
-  //   });
-  // };
-
-  // const {
-  //   register,
-  //   handleSubmit,
-
-  //   formState: { errors },
-  // } = useForm();
-
-  // const onSubmit = (data) => {
-
-  //   console.log(data);
-  // };
-
   return (
     <div>
       <div>
         <div className="flex justify-evenly py-4">
           <h2 className="text-3xl">All Users</h2>
-          <h2 className="text-3xl">Total Users: {users.length}</h2>
+          <h2 className="text-3xl">Total Users: </h2>
         </div>
         <div className="overflow-x-auto">
+          <div className="w-1/3">
+            <form onSubmit={handleSearch}>
+              <label className="input input-bordered flex items-center gap-2">
+                <input
+                  type="text"
+                  name="searchValue"
+                  onChange={(e) => setSearchText(e.target.value)}
+                  value={searchText}
+                  className="grow"
+                  placeholder="Search"
+                />
+                <button type="submit" className="btn text-white bg-[#000000e7]">
+                  Search
+                </button>
+              </label>
+
+              {/* <input
+                type="text"
+                name="searchValue"
+                className="grow input"
+                onChange={(e) => setSearchText(e.target.value)}
+                value={searchText}
+                placeholder="Search"
+              />
+              <input
+                className="btn bg-[#000000ce] text-white"
+                type="submit"
+                value="Search"
+              /> */}
+            </form>
+          </div>
           <table className="table w-full">
             {/* head */}
             <thead>
@@ -88,49 +148,29 @@ const AllUsers = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user, index) => (
-                <tr key={user._id}>
-                  <th>{index + 1}</th>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
+              {allUsers &&
+                allUsers.map((user, index) => (
+                  <tr key={user._id}>
+                    <th>{index + 1}</th>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
 
-                  <td>
-                    {/* {user.role === "admin" ? (
-                      "Admin"
-                    ) : (
+                    <td>
+                      {user.role}
+                      <Link to={`/dashboard/updateRole/${user._id}`}>
+                        <button className="btn ">edit</button>
+                      </Link>
+                    </td>
+                    <td>
                       <button
-                        onClick={() => handleMakeAdmin(user)}
+                        onClick={() => handleDelete(user)}
                         className="btn btn-ghost btn-lg"
                       >
-                        <FaUsers />
+                        <FaTrashAlt />
                       </button>
-                    )} */}
-
-                    {/* <button
-                      onClick={() => handleMakeAdmin(user)}
-                      className=""
-                    >
-                      <FaUsers />
-                    </button> */}
-
-                    {/* ================================= */}
-                    {user.role}
-                    <Link to={`/dashboard/updateRole/${user._id}`}>
-                      <button className="btn ">edit</button>
-                    </Link>
-
-                    {/* ============================= */}
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => handleDelete(user)}
-                      className="btn btn-ghost btn-lg"
-                    >
-                      <FaTrashAlt />
-                    </button>
-                  </td>
-                </tr>
-              ))}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

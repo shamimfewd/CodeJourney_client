@@ -20,7 +20,7 @@ const CreateSession = () => {
       classStart: data.classStart,
       classEnd: data.classEnd,
       price: parseFloat(data.price),
-      status: "pending",
+      status: "Pending",
     };
 
     const tutorSession = await axiosSecure.post("/session", menuItem);
