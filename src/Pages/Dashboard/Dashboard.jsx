@@ -120,7 +120,7 @@ const Dashboard = () => {
             <NavLink to={"/dashboard/adminHome"}>Admin Home</NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/viewAllUsers"}>View All Users</NavLink>
+            <NavLink to={"/dashboard/allUser"}>View All Users</NavLink>
           </li>
           <li>
             <NavLink to={"/dashboard/viewAllSessions"}>
@@ -142,6 +142,9 @@ const Dashboard = () => {
           </li>
           <li>
             <NavLink to={"/dashboard/createSession"}>Create Session</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/dashboard/tutorSession"}>Your Sessions</NavLink>
           </li>
         </>
       );

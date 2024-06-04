@@ -1,6 +1,6 @@
 import Banner from "./Banner";
 import StudySession from "./StudySession";
-import TutorSection from "./TutorSection";
+import TutorSection from "../Dashboard/TutorSection";
 
 const Home = () => {
   return (

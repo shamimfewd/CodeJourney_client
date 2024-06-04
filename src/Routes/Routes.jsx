@@ -15,6 +15,9 @@ import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
 import TutorHome from "../Pages/Dashboard/Tutor/TutorHome";
 import CreateSession from "../Pages/Dashboard/Tutor/CreateSession";
 import SessionDetails from "../Pages/SessionDetails";
+import TutorSection from "../Pages/Dashboard/TutorSection";
+import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
+import UpdateRole from "../Pages/Dashboard/Admin/UpdateRole";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +31,7 @@ const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: <SessionDetails />,
-        loader: ()=> fetch('http://localhost:5000/session')
+        loader: () => fetch("http://localhost:5000/session"),
       },
     ],
   },
@@ -77,6 +80,16 @@ const router = createBrowserRouter([
         path: "adminHome",
         element: <AdminHome />,
       },
+      {
+        path: "allUser",
+        element: <AllUsers />,
+      },
+      {
+        path: "updateRole/:id",
+        element: <UpdateRole />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/users/${params.id}`),
+      },
 
       // tutor routes
 
@@ -87,6 +100,10 @@ const router = createBrowserRouter([
       {
         path: "createSession",
         element: <CreateSession />,
+      },
+      {
+        path: "tutorSession",
+        element: <TutorSection />,
       },
     ],
   },
