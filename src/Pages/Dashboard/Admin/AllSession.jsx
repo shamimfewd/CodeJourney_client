@@ -1,17 +1,16 @@
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
-
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-// import { useParams } from "react-router-dom";
+import useSessionCard from "../../../Hooks/useSessionCard";
 
 const AllSession = ({ id }) => {
   const axiosSecure = useAxiosSecure();
   const [statusData, setStatusData] = useState([]);
+  const [refetch] = useSessionCard();
 
   // featch all session
-
   const getData = async () => {
     const { data } = await axiosSecure.get("/session");
     setStatusData(data);
@@ -32,14 +31,6 @@ const AllSession = ({ id }) => {
       spesicicData();
     }
   }, [id]);
-
-  //   const { data: session = [] } = useQuery({
-  //     queryKey: ["session"],
-  //     queryFn: async () => {
-  //       const res = await axiosSecure.get("/session");
-  //       return res.data;
-  //     },
-  //   });
 
   const handleStatus = async (id, prevSta, status, price) => {
     console.log(price);
@@ -74,6 +65,33 @@ const AllSession = ({ id }) => {
     }
 
     console.log(data);
+  };
+
+  const handleRemove = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/delSession/${_id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "session has been deleted.",
+              icon: "success",
+            });
+
+            const remaining = statusData.filter((item) => item._id !== _id);
+            setStatusData(remaining);
+          }
+        });
+      }
+    });
   };
 
   return (
@@ -123,6 +141,8 @@ const AllSession = ({ id }) => {
                 <th>Session Price</th>
                 <th>Status</th>
                 <th>Action</th>
+                <th>Edit</th>
+                <th>Remove</th>
               </tr>
             </thead>
             <tbody>
@@ -185,6 +205,11 @@ const AllSession = ({ id }) => {
                     >
                       Edit
                     </Link>{" "}
+                  </td>
+                  <td>
+                    <button onClick={() => handleRemove(item._id)}>
+                      Remove
+                    </button>
                   </td>
                 </tr>
               ))}

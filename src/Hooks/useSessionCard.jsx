@@ -4,7 +4,7 @@ import useAxiosPublic from "./useAxiosPublic";
 const useSessionCard = () => {
   const axiosPublic = useAxiosPublic();
 
-  const { data: session = [] } = useQuery({
+  const { data: session = [], refetch } = useQuery({
     queryKey: ["session"],
     queryFn: async () => {
       const res = await axiosPublic.get("/session");
@@ -12,7 +12,7 @@ const useSessionCard = () => {
     },
   });
 
-  return [session];
+  return [session, refetch];
 };
 
 export default useSessionCard;

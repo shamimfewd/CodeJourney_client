@@ -2,20 +2,18 @@ import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
-import useAuth from "../../../Hooks/useAuth";
+
 
 const UpdateSession = () => {
-  //   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-
   const loadedData = useLoaderData();
   const { _id } = loadedData;
-  console.log(loadedData);
+ 
 
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
-    reset();
+
     const menuItem = {
       title: data.title,
       tutorName: data.tutorName,
@@ -38,6 +36,7 @@ const UpdateSession = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+      refetch();
     }
   };
 
