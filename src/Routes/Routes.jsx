@@ -15,12 +15,10 @@ import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
 import TutorHome from "../Pages/Dashboard/Tutor/TutorHome";
 import CreateSession from "../Pages/Dashboard/Tutor/CreateSession";
 import SessionDetails from "../Pages/SessionDetails";
-
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
 import UpdateRole from "../Pages/Dashboard/Admin/UpdateRole";
 import AllSession from "../Pages/Dashboard/Admin/AllSession";
-import TutorSection from "../Pages/Dashboard/TutorSection";
-import SessionStatusUp from "../Components/SessionStatusUp";
+import MySession from "../Pages/Dashboard/Tutor/MySession";
 
 const router = createBrowserRouter([
   {
@@ -100,13 +98,7 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/session/${params.id}`),
       },
-      // {
-      //   path: "sessionStatusUpdate/:id",
-      //   element: <SessionStatusUp />,
-      //   loader: ({ params }) =>
-      //     fetch(`http://localhost:5000/session/${params.id}`),
-      // },
-
+      
       // tutor routes
 
       {
@@ -117,9 +109,10 @@ const router = createBrowserRouter([
         path: "createSession",
         element: <CreateSession />,
       },
+   
       {
-        path: "tutorSession",
-        element: <TutorSection />,
+        path: "mySessions",
+        element: <MySession />,
       },
     ],
   },

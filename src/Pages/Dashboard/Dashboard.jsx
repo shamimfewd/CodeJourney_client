@@ -40,7 +40,7 @@ const Dashboard = () => {
             <NavLink to={"/dashboard/createSession"}>Create Session</NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/tutorSession"}>Your Sessions</NavLink>
+            <NavLink to={"/dashboard/mySessions"}>My Sessions</NavLink>
           </li>
         </>
       );

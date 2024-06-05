@@ -19,7 +19,7 @@ const CreateSession = () => {
       description: data.description,
       classStart: data.classStart,
       classEnd: data.classEnd,
-      price: parseFloat(data.price),
+      price: parseInt(data.price),
       status: "Pending",
     };
 
@@ -173,12 +173,21 @@ const CreateSession = () => {
                 <span className="text-orange-600">*</span>
               </span>
             </div>
+
             <input
               type="number"
               {...register("price", { required: true })}
               placeholder="Price"
               className="input input-bordered w-full "
             />
+            {/* <select
+              {...register("price", { required: true })}
+              className="select select-bordered w-full "
+            >
+              <option value={"default"} disabled></option>
+              <option value={"Paid"}>Paid</option>
+              <option value={"Free"}>Free</option>
+            </select> */}
           </label>
         </div>
         <div>
