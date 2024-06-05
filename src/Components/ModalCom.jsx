@@ -1,27 +1,16 @@
-const ModalCom = () => {
-  return (
-    <div>
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
-      {/* <button
-        className="btn"
-        onClick={() => document.getElementById("my_modal_1").showModal()}
-      >
-        open modal
-      </button> */}
-      <dialog id="my_modal_1" className="modal">
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">Hello!</h3>
-          <p className="py-4">my modal</p>
-          <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn">Close</button>
-            </form>
-          </div>
-        </div>
-      </dialog>
-    </div>
-  );
-};
+// import { useForm } from "react-hook-form";
+// import Swal from "sweetalert2";
+// import useAxiosSecure from "../Hooks/useAxiosSecure";
+// import { useLoaderData } from "react-router-dom";
 
-export default ModalCom;
+// const ModalCom = ({ onSubmit }) => {
+//   const loadedData = useLoaderData();
+//   const { id } = loadedData;
+//   console.log(id);
+//   onSubmit(id);
+//   // code for modal
+
+//   return <div></div>;
+// };
+
+// export default ModalCom;

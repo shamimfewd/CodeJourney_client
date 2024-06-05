@@ -19,6 +19,9 @@ import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
 import UpdateRole from "../Pages/Dashboard/Admin/UpdateRole";
 import AllSession from "../Pages/Dashboard/Admin/AllSession";
 import MySession from "../Pages/Dashboard/Tutor/MySession";
+import UpdateSession from "../Pages/Dashboard/Admin/UpdateSession";
+import AdminRoute from "./AdminRoute";
+// import ModalCom from "../Components/ModalCom";
 
 const router = createBrowserRouter([
   {
@@ -79,26 +82,59 @@ const router = createBrowserRouter([
 
       {
         path: "adminHome",
-        element: <AdminHome />,
+        element: (
+          <AdminRoute>
+            <AdminHome />
+          </AdminRoute>
+        ),
       },
       {
         path: "allUser",
-        element: <AllUsers />,
+        element: (
+          <AdminRoute>
+            <AllUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "updateRole/:id",
-        element: <UpdateRole />,
+        element: (
+          <AdminRoute>
+            <UpdateRole />
+          </AdminRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/users/${params.id}`),
       },
 
       {
         path: "allSession",
-        element: <AllSession />,
+        element: (
+          <AdminRoute>
+            <AllSession />
+          </AdminRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/session/${params.id}`),
       },
-      
+
+      {
+        path: "updateSession/:id",
+        element: (
+          <AdminRoute>
+            <UpdateSession />
+          </AdminRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/upSession/${params.id}`),
+      },
+      // {
+      //   path: "priceUpdateModal/:id",
+      //   element: <ModalCom />,
+      //   loader: ({ params }) =>
+      //     fetch(`http://localhost:5000/session/${params.id}`),
+      // },
+
       // tutor routes
 
       {
@@ -109,7 +145,7 @@ const router = createBrowserRouter([
         path: "createSession",
         element: <CreateSession />,
       },
-   
+
       {
         path: "mySessions",
         element: <MySession />,
