@@ -21,6 +21,7 @@ import AllSession from "../Pages/Dashboard/Admin/AllSession";
 import MySession from "../Pages/Dashboard/Tutor/MySession";
 import UpdateSession from "../Pages/Dashboard/Admin/UpdateSession";
 import AdminRoute from "./AdminRoute";
+import UpdateNote from "../Pages/Dashboard/Student/UpdateNote";
 // import ModalCom from "../Components/ModalCom";
 
 const router = createBrowserRouter([
@@ -76,6 +77,12 @@ const router = createBrowserRouter([
       {
         path: "allMaterials",
         element: <AllProduct />,
+      },
+      {
+        path: "updateNote/:id",
+        element: <UpdateNote />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/upNote/${params.id}`),
       },
 
       // admin routes

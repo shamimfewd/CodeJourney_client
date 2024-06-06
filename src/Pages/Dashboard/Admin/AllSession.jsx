@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import useSessionCard from "../../../Hooks/useSessionCard";
+
 
 const AllSession = ({ id }) => {
   const axiosSecure = useAxiosSecure();
   const [statusData, setStatusData] = useState([]);
-  const [refetch] = useSessionCard();
+
 
   // featch all session
   const getData = async () => {
@@ -35,7 +35,11 @@ const AllSession = ({ id }) => {
   const handleStatus = async (id, prevSta, status, price) => {
     console.log(price);
     if (prevSta === status) return;
-    if (prevSta === "Approved") return;
+    if (prevSta === "Approved")
+      if (prevSta === "Rejected") {
+        handleReject(id);
+       
+      }
     await axiosSecure.patch(`/updateSta/${id}`, { status });
 
     getData();
@@ -64,9 +68,16 @@ const AllSession = ({ id }) => {
       });
     }
 
-    console.log(data);
+
   };
 
+  const handleReject = (id) => {
+    const remaining = statusData.filter((item) => item._id !== id);
+    setStatusData(remaining);
+  };
+
+
+  // delete session
   const handleRemove = (_id) => {
     Swal.fire({
       title: "Are you sure?",

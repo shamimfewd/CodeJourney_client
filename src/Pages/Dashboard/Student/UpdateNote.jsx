@@ -2,27 +2,43 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import { useLoaderData } from "react-router-dom";
 
-const CreateNote = () => {
+const UpdateNote = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+
+  const loadedData = useLoaderData();
+  const { _id } = loadedData;
+  console.log();
+  console.log(loadedData);
+
   const { register, handleSubmit, reset } = useForm();
 
+  //   const { data: note } = useQuery({
+  //     queryKey: ["note"],
+  //     queryFn: async () => {
+  //       const res = await axiosSecure.get("/upNote");
+  //       console.log(res.tata);
+  //       return res.data;
+  //     },
+  //   });
+
   const onSubmit = async (data) => {
-    reset();
     const noteItem = {
       title: data.title,
       studentEmail: data.studentEmail,
       description: data.description,
     };
 
-    const studentNote = await axiosSecure.post("/note", noteItem);
+    const studentNote = await axiosSecure.put(`/upNote/${_id}`, noteItem);
     console.log(studentNote.data);
-    if (studentNote.data.insertedId) {
+    if (studentNote.data.modifiedCount > 0) {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: `Note Added Successfully `,
+        title: `Updated Note Successfully `,
         showConfirmButton: false,
         timer: 1500,
       });
@@ -32,6 +48,7 @@ const CreateNote = () => {
   };
   return (
     <div>
+      <h1>update page</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label className="form-control w-full MY-6">
@@ -45,6 +62,7 @@ const CreateNote = () => {
               type="text"
               placeholder="note title"
               {...register("title", { required: true })}
+              defaultValue={loadedData.title}
               className="input input-bordered w-full "
             />
           </label>
@@ -62,7 +80,7 @@ const CreateNote = () => {
               type="email"
               placeholder="tutor email"
               {...register("studentEmail", { required: true })}
-              defaultValue={user.email}
+              defaultValue={loadedData.studentEmail}
               className="input input-bordered w-full "
             />
           </label>
@@ -78,6 +96,7 @@ const CreateNote = () => {
             </div>
             <textarea
               {...register("description", { required: true })}
+              defaultValue={loadedData.description}
               className="textarea textarea-bordered h-24"
               placeholder="description"
             ></textarea>
@@ -90,4 +109,4 @@ const CreateNote = () => {
   );
 };
 
-export default CreateNote;
+export default UpdateNote;

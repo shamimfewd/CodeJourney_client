@@ -36,7 +36,7 @@ const UpdateSession = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      refetch();
+      
     }
   };
 

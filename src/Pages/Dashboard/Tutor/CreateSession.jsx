@@ -10,7 +10,7 @@ const CreateSession = () => {
 
   const onSubmit = async (data) => {
     reset();
-    const menuItem = {
+    const sessionItem = {
       title: data.title,
       tutorName: data.tutorName,
       tutorEmail: data.tutorEmail,
@@ -23,19 +23,19 @@ const CreateSession = () => {
       status: "Pending",
     };
 
-    const tutorSession = await axiosSecure.post("/session", menuItem);
+    const tutorSession = await axiosSecure.post("/session", sessionItem);
     console.log(tutorSession.data);
     if (tutorSession.data.insertedId) {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: `${data.title} is added to the menu`,
+        title: `session added successfully`,
         showConfirmButton: false,
         timer: 1500,
       });
     }
 
-    console.log(data);
+  
   };
 
   return (
@@ -180,14 +180,6 @@ const CreateSession = () => {
               placeholder="Price"
               className="input input-bordered w-full "
             />
-            {/* <select
-              {...register("price", { required: true })}
-              className="select select-bordered w-full "
-            >
-              <option value={"default"} disabled></option>
-              <option value={"Paid"}>Paid</option>
-              <option value={"Free"}>Free</option>
-            </select> */}
           </label>
         </div>
         <div>
