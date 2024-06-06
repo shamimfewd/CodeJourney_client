@@ -2,20 +2,47 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ManageNote = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-  const { data: notes = [] } = useQuery({
+  const { data: notes = [], refetch } = useQuery({
     queryKey: ["notes"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/myNotes/${user.email}`);
-      console.log(res.data);
       return res.data;
     },
-    
   });
+
+  const handleDelete = (note) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/delNote/${note._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+
+            // const remaining = notes.filter((item) => item._id !== user._id);
+            // notes.push(remaining);
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -32,7 +59,12 @@ const ManageNote = () => {
                     <button className="btn btn-primary">Edit</button>
                   </Link>
 
-                  <button className="btn btn-primary">Remove</button>
+                  <button
+                    onClick={() => handleDelete(note)}
+                    className="btn btn-primary"
+                  >
+                    Remove
+                  </button>
                 </div>
               </div>
             </div>

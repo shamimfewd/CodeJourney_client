@@ -22,7 +22,7 @@ const AllUsers = () => {
   //     return res.data;
   //   },
   // });
-  console.log(allUsers);
+  
 
   const handleSearch = (e) => {
     e.preventDefault();

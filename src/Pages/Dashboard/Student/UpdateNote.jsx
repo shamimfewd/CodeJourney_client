@@ -1,29 +1,18 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
-import useAuth from "../../../Hooks/useAuth";
-import { useQuery } from "@tanstack/react-query";
 import { useLoaderData } from "react-router-dom";
 
 const UpdateNote = () => {
-  const { user } = useAuth();
+
   const axiosSecure = useAxiosSecure();
 
   const loadedData = useLoaderData();
   const { _id } = loadedData;
-  console.log();
-  console.log(loadedData);
+ 
 
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
 
-  //   const { data: note } = useQuery({
-  //     queryKey: ["note"],
-  //     queryFn: async () => {
-  //       const res = await axiosSecure.get("/upNote");
-  //       console.log(res.tata);
-  //       return res.data;
-  //     },
-  //   });
 
   const onSubmit = async (data) => {
     const noteItem = {
