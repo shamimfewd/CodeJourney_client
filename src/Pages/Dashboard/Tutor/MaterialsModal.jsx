@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Modal from "react-modal";
+import { AiOutlineClose } from "react-icons/ai";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 
@@ -27,7 +28,6 @@ const MaterialsModal = ({
   openModal,
   item,
 }) => {
-  console.log(item);
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -58,7 +58,7 @@ const MaterialsModal = ({
         "/materials",
         materialsItem
       );
-      console.log(tutorMaterials.data);
+
       if (tutorMaterials.data.insertedId) {
         Swal.fire({
           position: "top-end",
@@ -69,8 +69,6 @@ const MaterialsModal = ({
         });
       }
     }
-
-   
   };
   return (
     <div>
@@ -81,91 +79,98 @@ const MaterialsModal = ({
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <button onClick={closeModal}>close</button>
-          <div>I am a modal</div>
+          <button
+            className="hover:text-red-500 p-1 absolute right-0 top-0 rounded-full w-10 h-10  "
+            onClick={closeModal}
+          >
+            <AiOutlineClose className="text-2xl text-center" />
+          </button>
 
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-              <label className="form-control w-full MY-6">
-                <div className="label">
-                  <span className="label-text">
-                    Material Title{""}
-                    <span className="text-orange-600">*</span>
-                  </span>
-                </div>
+          <div className="mt-10">
+            <div>Upload Your Materials</div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div>
+                <label className="form-control w-full MY-6">
+                  <div className="label">
+                    <span className="label-text">
+                      Material Title{""}
+                      <span className="text-orange-600">*</span>
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="note title"
+                    {...register("title", { required: true })}
+                    defaultValue={item.title}
+                    className="input input-bordered w-full "
+                  />
+                </label>
+              </div>
+
+              <div>
+                <label className="form-control w-full MY-6">
+                  <div className="label">
+                    <span className="label-text">
+                      Session Id{""}
+                      <span className="text-orange-600">*</span>
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Session Id"
+                    {...register("sessionId", { required: true })}
+                    defaultValue={item._id}
+                    className="input input-bordered w-full "
+                  />
+                </label>
+              </div>
+
+              <div className="w-full">
+                <label className="form-control w-full MY-6">
+                  <div className="label">
+                    <span className="label-text">
+                      Tutor Email{""}
+                      <span className="text-orange-600">*</span>
+                    </span>
+                  </div>
+                  <input
+                    type="email"
+                    placeholder="tutor email"
+                    {...register("tutorEmail", { required: true })}
+                    defaultValue={user.email}
+                    className="input input-bordered w-full "
+                  />
+                </label>
+              </div>
+
+              <div className="w-full">
+                <label className="form-control w-full MY-6">
+                  <div className="label">
+                    <span className="label-text">
+                      Drive Link{""}
+                      <span className="text-orange-600">*</span>
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Drive Link"
+                    {...register("link", { required: true })}
+                    className="input input-bordered w-full "
+                  />
+                </label>
+              </div>
+
+              <div>
                 <input
-                  type="text"
-                  placeholder="note title"
-                  {...register("title", { required: true })}
-                  defaultValue={item.title}
-                  className="input input-bordered w-full "
+                  type="file"
+                  {...register("image", { required: true })}
+                  className="file-input w-full max-w-xs my-6"
                 />
-              </label>
-            </div>
+              </div>
 
-            <div>
-              <label className="form-control w-full MY-6">
-                <div className="label">
-                  <span className="label-text">
-                    Session Id{""}
-                    <span className="text-orange-600">*</span>
-                  </span>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Session Id"
-                  {...register("sessionId", { required: true })}
-                  defaultValue={item._id}
-                  className="input input-bordered w-full "
-                />
-              </label>
-            </div>
-
-            <div className="w-full">
-              <label className="form-control w-full MY-6">
-                <div className="label">
-                  <span className="label-text">
-                    Tutor Email{""}
-                    <span className="text-orange-600">*</span>
-                  </span>
-                </div>
-                <input
-                  type="email"
-                  placeholder="tutor email"
-                  {...register("tutorEmail", { required: true })}
-                  defaultValue={user.email}
-                  className="input input-bordered w-full "
-                />
-              </label>
-            </div>
-
-            <div className="w-full">
-              <label className="form-control w-full MY-6">
-                <div className="label">
-                  <span className="label-text">
-                    Drive Link{""}
-                    <span className="text-orange-600">*</span>
-                  </span>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Drive Link"
-                  {...register("link", { required: true })}
-                  className="input input-bordered w-full "
-                />
-              </label>
-            </div>
-
-            <div>
-              <input
-                type="file"
-                {...register("image", { required: true })}
-                className="file-input w-full max-w-xs my-6"
-              />
-            </div>
-
-            <button className="btn">Add Materials</button>
-          </form>
+              <button className="btn">Add Materials</button>
+            </form>
+          </div>
         </Modal>
       </div>
     </div>

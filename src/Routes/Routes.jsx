@@ -7,7 +7,6 @@ import Login from "../Pages/Login/Login";
 import PrivateRoute from "./PrivateRoute";
 import AllProduct from "../Pages/Dashboard/AllProduct";
 import BookedSession from "../Pages/Dashboard/Student/BookedSession";
-// import CreateSession from "../Pages/Dashboard/Student/CreateSession";
 import StudentHome from "../Pages/Dashboard/Student/StudentHome";
 import CreateNote from "../Pages/Dashboard/Student/CreateNote";
 import ManageNote from "../Pages/Dashboard/Student/ManageNote";
@@ -22,9 +21,10 @@ import MySession from "../Pages/Dashboard/Tutor/MySession";
 import UpdateSession from "../Pages/Dashboard/Admin/UpdateSession";
 import AdminRoute from "./AdminRoute";
 import UpdateNote from "../Pages/Dashboard/Student/UpdateNote";
-import UploadMatirials from "../Pages/Dashboard/Tutor/UploadMatirials";
 import ApprovedSession from "../Pages/Dashboard/Tutor/ApprovedSession";
-// import ModalCom from "../Components/ModalCom";
+import MyMaterials from "../Pages/Dashboard/Tutor/MyMaterials";
+import EditMaterial from "../Pages/Dashboard/Tutor/EditMaterial";
+
 
 const router = createBrowserRouter([
   {
@@ -160,13 +160,21 @@ const router = createBrowserRouter([
         path: "mySessions",
         element: <MySession />,
       },
-      {
-        path: "uploadMaterials",
-        element: <UploadMatirials />,
-      },
+    
       {
         path: "approvedSession",
         element: <ApprovedSession />,
+      },
+      {
+        path: "myMaterials",
+        element: <MyMaterials />,
+
+      },
+      {
+        path: "updateMaterial/:id",
+        element: <EditMaterial />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/upMaterial/${params.id}`),
       },
     ],
   },

@@ -41,15 +41,14 @@ const Dashboard = () => {
           <li>
             <NavLink to={"/dashboard/mySessions"}>My Sessions</NavLink>
           </li>
+
           <li>
-            <NavLink to={"/dashboard/uploadMaterials"}>
+            <NavLink to={"/dashboard/approvedSession"}>
               Upload Materials
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/approvedSession"}>
-              Approved Session
-            </NavLink>
+            <NavLink to={"/dashboard/myMaterials"}>My Materials</NavLink>
           </li>
         </>
       );
