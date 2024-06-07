@@ -2,17 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import MaterialsModal from "./MaterialsModal";
-import {
-  Button,
-  Dialog,
-  DialogPanel,
-  DialogTitle,
-  Transition,
-  TransitionChild,
-} from "@headlessui/react";
 import { useState } from "react";
 
 const ApprovedSession = () => {
+  let subtitle;
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { data: session = [] } = useQuery({
@@ -23,17 +16,26 @@ const ApprovedSession = () => {
     },
   });
 
-  let [isOpen, setIsOpen] = useState(false);
-  const [currentItem, setCurrentItem] = useState(null);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [currentItem, setCurrentItem] = useState("");
 
-  function open(item) {
+ 
+
+  function openModal(item) {
     setIsOpen(true);
     setCurrentItem(item);
   }
 
-  function close() {
-    setIsOpen(false);
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
   }
+
+  function closeModal() {
+    setIsOpen(false);
+    setCurrentItem("");
+  }
+
   return (
     <div>
       <h1>{session.length}</h1>
@@ -60,14 +62,20 @@ const ApprovedSession = () => {
                 <h3 className="text-lg font-bold text-gray-700 dark:text-gray-200 md:text-xl">
                   ${item.price}
                 </h3>
-                <MaterialsModal
-                  isOpen={isOpen}
-                  setIsOpen={setIsOpen}
-                  close={close}
-                  item={currentItem}
-                />
+                {modalIsOpen && (
+                  <MaterialsModal
+                    afterOpenModal={afterOpenModal}
+                    openModal={openModal}
+                    closeModal={closeModal}
+                    modalIsOpen={modalIsOpen}
+                    item={currentItem}
+                  />
+                )}
 
-                <button onClick={() => open(item)} className="btn btn-primary">
+                <button
+                  onClick={() => openModal(item)}
+                  className="btn btn-primary"
+                >
                   Upload Materials
                 </button>
               </div>

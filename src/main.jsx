@@ -7,6 +7,9 @@ import router from "./Routes/Routes";
 import AuthProvider from "./Providers/AuthProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
