@@ -1,4 +1,3 @@
-
 import { NavLink, Outlet } from "react-router-dom";
 import { GoSidebarCollapse } from "react-icons/go";
 import useAdmin from "../../Hooks/useAdmin";
@@ -41,6 +40,16 @@ const Dashboard = () => {
           </li>
           <li>
             <NavLink to={"/dashboard/mySessions"}>My Sessions</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/dashboard/uploadMaterials"}>
+              Upload Materials
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={"/dashboard/approvedSession"}>
+              Approved Session
+            </NavLink>
           </li>
         </>
       );

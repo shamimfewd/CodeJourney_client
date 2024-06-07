@@ -22,6 +22,8 @@ import MySession from "../Pages/Dashboard/Tutor/MySession";
 import UpdateSession from "../Pages/Dashboard/Admin/UpdateSession";
 import AdminRoute from "./AdminRoute";
 import UpdateNote from "../Pages/Dashboard/Student/UpdateNote";
+import UploadMatirials from "../Pages/Dashboard/Tutor/UploadMatirials";
+import ApprovedSession from "../Pages/Dashboard/Tutor/ApprovedSession";
 // import ModalCom from "../Components/ModalCom";
 
 const router = createBrowserRouter([
@@ -58,6 +60,7 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+   
       {
         path: "studentHome",
         element: <StudentHome />,
@@ -156,6 +159,14 @@ const router = createBrowserRouter([
       {
         path: "mySessions",
         element: <MySession />,
+      },
+      {
+        path: "uploadMaterials",
+        element: <UploadMatirials />,
+      },
+      {
+        path: "approvedSession",
+        element: <ApprovedSession />,
       },
     ],
   },
