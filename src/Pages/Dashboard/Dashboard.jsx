@@ -50,6 +50,9 @@ const Dashboard = () => {
           <li>
             <NavLink to={"/dashboard/myMaterials"}>My Materials</NavLink>
           </li>
+          <li>
+            <NavLink to={"/dashboard/viewAllNotes"}>View All Notes</NavLink>
+          </li>
         </>
       );
     } else {

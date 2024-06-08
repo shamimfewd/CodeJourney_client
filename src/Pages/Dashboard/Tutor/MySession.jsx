@@ -1,25 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-// import SectionTitle from "../../Shired/SectionTitle";
-
 import useAuth from "../../../Hooks/useAuth";
-// import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import ApplyAgain from "./ApplyAgain";
+import { useState } from "react";
 
 const MySession = () => {
   const axiosSecure = useAxiosSecure();
-  //   const [test, setTest] = useState([]);
-  //   console.log(test);
   const { user } = useAuth();
-
-  //   useEffect(() => {
-  //     const getData = async () => {
-
-  //       const { data } = await axiosSecure.get(`mySession/${user?.email}`);
-  //       setTest(data);
-  //     };
-
-  //     getData();
-  //   }, [axiosSecure]);
 
   const { data: session = [] } = useQuery({
     queryKey: ["session"],
@@ -28,6 +15,25 @@ const MySession = () => {
       return res.data;
     },
   });
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [currentItem, setCurrentItem] = useState("");
+  let subtitle;
+
+  function openModal(item) {
+    setIsOpen(true);
+    setCurrentItem(item);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+    setCurrentItem("");
+  }
 
   return (
     <div>
@@ -40,7 +46,6 @@ const MySession = () => {
             <div className="w-2/3 p-4 md:p-4">
               <h3 className="text-xl font-bold text-gray-800 dark:text-white">
                 {item.title}
-                {console.log(item.title)}
               </h3>
 
               <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
@@ -49,10 +54,25 @@ const MySession = () => {
 
               <div className="flex mt-2 item-center">{item.status}</div>
 
+              <ApplyAgain
+                afterOpenModal={afterOpenModal}
+                openModal={openModal}
+                closeModal={closeModal}
+                modalIsOpen={modalIsOpen}
+                item={currentItem}
+              />
               <div className="flex justify-between mt-3 ">
                 <h3 className="text-lg font-bold text-gray-700 dark:text-gray-200 md:text-xl">
                   ${item.price}
                 </h3>
+                {item.status === "Rejected" && (
+                  <button
+                    onClick={() => openModal(item)}
+                    className="btn btn-primary"
+                  >
+                    Apply Again
+                  </button>
+                )}
               </div>
             </div>
           </div>

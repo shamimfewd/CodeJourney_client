@@ -24,7 +24,9 @@ import UpdateNote from "../Pages/Dashboard/Student/UpdateNote";
 import ApprovedSession from "../Pages/Dashboard/Tutor/ApprovedSession";
 import MyMaterials from "../Pages/Dashboard/Tutor/MyMaterials";
 import EditMaterial from "../Pages/Dashboard/Tutor/EditMaterial";
-
+import ViewAllNotes from "../Pages/Dashboard/Tutor/ViewAllNotes";
+import BookingPage from "../Pages/BookingPage";
+import BookedDetails from "../Pages/Dashboard/Student/BookedDetails";
 
 const router = createBrowserRouter([
   {
@@ -36,9 +38,19 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/bookingPage/:id",
+        element: <BookingPage />,
+        loader: () => fetch("http://localhost:5000/session"),
+      },
+      {
         path: "/details/:id",
         element: <SessionDetails />,
-        loader: () => fetch("http://localhost:5000/session"),
+        loader: () => fetch("http://localhost:5000/sessionDetails"),
+      },
+      {
+        path: "/bookedDetails/:id",
+        element: <BookedDetails />,
+        loader: () => fetch("http://localhost:5000/bookedDetail"),
       },
     ],
   },
@@ -60,7 +72,6 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
-   
       {
         path: "studentHome",
         element: <StudentHome />,
@@ -160,7 +171,7 @@ const router = createBrowserRouter([
         path: "mySessions",
         element: <MySession />,
       },
-    
+
       {
         path: "approvedSession",
         element: <ApprovedSession />,
@@ -168,13 +179,17 @@ const router = createBrowserRouter([
       {
         path: "myMaterials",
         element: <MyMaterials />,
-
       },
       {
         path: "updateMaterial/:id",
         element: <EditMaterial />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/upMaterial/${params.id}`),
+      },
+
+      {
+        path: "viewAllNotes",
+        element: <ViewAllNotes />,
       },
     ],
   },
