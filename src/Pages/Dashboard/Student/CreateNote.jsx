@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
+import SectionTitle from "../../../Shired/SectionTitle";
 
 const CreateNote = () => {
   const { user } = useAuth();
@@ -32,7 +33,8 @@ const CreateNote = () => {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <SectionTitle heading={"Create Note"} />
+      <form className="w-8/12 mx-auto" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label className="form-control w-full MY-6">
             <div className="label">
@@ -83,8 +85,8 @@ const CreateNote = () => {
             ></textarea>
           </label>
         </div>
-
-        <button className="btn">Add Note</button>
+<br />
+        <button className="btn bg-[#1E90FF] text-white">Add Note</button>
       </form>
     </div>
   );

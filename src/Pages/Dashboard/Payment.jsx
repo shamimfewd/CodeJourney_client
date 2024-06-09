@@ -26,18 +26,19 @@ const Payment = ({
   item,
 }) => {
   return (
-    <div className="w-5/12">
+    <div className="w-10/12">
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <div className="h-[80vh] w-[400px]">
+        <div className="h-[] w-[400px]">
           <button
             className="hover:text-red-500 p-1 absolute right-0 top-0 rounded-full w-10 h-10"
             onClick={closeModal}
           >
+        
             <AiOutlineClose className="text-2xl text-center" />
           </button>
           <div className="">

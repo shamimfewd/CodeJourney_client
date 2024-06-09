@@ -29,7 +29,7 @@ const CheckOut = ({ item, closeModal }) => {
   // get client secret
   const getClientSecret = async (price) => {
     const { data } = await axiosSecure.post("/create-payment-intent", price);
-    console.log("my payment", data);
+  
     setClientSecret(data.clientSecret);
   };
 
@@ -110,7 +110,7 @@ const CheckOut = ({ item, closeModal }) => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="p-4">
         <CardElement
           options={{
             style: {
@@ -127,8 +127,11 @@ const CheckOut = ({ item, closeModal }) => {
             },
           }}
         />
+        <div className="flex justify-between">
+
+    
         <button
-          className="btn btn-primary"
+          className="btn text-white bg-[#1E90FF] "
           type="submit"
           disabled={!stripe || !clientSecret || processing}
         >
@@ -138,6 +141,10 @@ const CheckOut = ({ item, closeModal }) => {
             `Pay $${item?.price}`
           )}
         </button>
+
+
+        <button onClick={closeModal} className="btn bg-[#FF6347] text-white">Cancel</button>
+        </div>
       </form>
 
       {cardError && <p className="text-red-700">{cardError}</p>}

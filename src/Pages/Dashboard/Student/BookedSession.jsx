@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import { Link } from "react-router-dom";
+import SectionTitle from "../../../Shired/SectionTitle";
 
 const BookedSession = () => {
   const { user } = useAuth();
@@ -15,7 +16,8 @@ const BookedSession = () => {
   });
   return (
     <div>
-      <h1>booked session: {sessions.length}</h1>
+      <SectionTitle heading={"My Booked Session"} />
+      <h3 className="font-bold">booked session: {sessions.length}</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {sessions.map((session) => (
           <div key={session._id} className="card  bg-base-100 shadow-xl">

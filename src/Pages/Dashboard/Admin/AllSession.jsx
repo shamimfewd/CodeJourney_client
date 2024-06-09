@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import SectionTitle from "../../../Shired/SectionTitle";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 
 const AllSession = ({ id }) => {
@@ -106,8 +108,8 @@ const AllSession = ({ id }) => {
   };
 
   return (
-    <div>
-      all session
+    <div className="mt-10 mr-10">
+    <SectionTitle  heading={'All Session'}/>
       {/* ======================== */}
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box">
@@ -138,13 +140,16 @@ const AllSession = ({ id }) => {
           </div>
         </div>
       </dialog>
+
+
+     
       {/* ================================================ */}
       <div>
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}
-            <thead>
-              <tr>
+            <thead className="bg-[#1E90FF] ">
+              <tr className="text-lg text-white">
                 <th>#</th>
                 <th>Session Title</th>
                 <th>Tutor Name</th>
@@ -214,12 +219,12 @@ const AllSession = ({ id }) => {
                       className="cursor-pointer"
                       to={`/dashboard/updateSession/${item._id}`}
                     >
-                      Edit
+                     <FaEdit  className="text-2xl"/>
                     </Link>{" "}
                   </td>
                   <td>
                     <button onClick={() => handleRemove(item._id)}>
-                      Remove
+                      <FaTrash  className="text-[#FF6347] text-2xl"/>
                     </button>
                   </td>
                 </tr>

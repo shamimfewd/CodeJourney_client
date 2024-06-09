@@ -154,6 +154,11 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/upSession/${params.id}`),
       },
+
+      {
+        path: "allMaterials",
+        element: <AllMaterials />,
+      },
       // {
       //   path: "priceUpdateModal/:id",
       //   element: <ModalCom />,

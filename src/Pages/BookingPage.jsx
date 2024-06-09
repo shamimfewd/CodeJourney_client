@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import Payment from "./Dashboard/Payment";
+import SectionTitle from "../Shired/SectionTitle";
 
 const BookingPage = () => {
   let subtitle;
@@ -65,7 +66,8 @@ const BookingPage = () => {
     setCurrentItem("");
   }
   return (
-    <div>
+    <div className="mt-10">
+      <SectionTitle heading={'Confirm Order'}/>
       <form onSubmit={handleSubmit(onSubmit)} className="w-8/12 mx-auto">
         <div>
           <label className="form-control w-full MY-6">
@@ -77,6 +79,7 @@ const BookingPage = () => {
             </div>
             <input
               type="text"
+              disabled
               placeholder="session title"
               // {...register("title", { required: true })}
               defaultValue={currentSession.title}
@@ -96,6 +99,7 @@ const BookingPage = () => {
               </div>
               <input
                 type="text"
+                disabled
                 placeholder="tutor name"
                 // {...register("tutorName", { required: true })}
                 defaultValue={currentSession.tutorName}
@@ -113,6 +117,7 @@ const BookingPage = () => {
                 </span>
               </div>
               <input
+                disabled
                 type="email"
                 placeholder="tutor email"
                 // {...register("tutorEmail", { required: true })}
@@ -134,6 +139,7 @@ const BookingPage = () => {
               </div>
               <input
                 type="date"
+                disabled
                 // {...register("registrationStart", { required: false })}
                 placeholder="session start"
                 defaultValue={currentSession.registrationStart}
@@ -151,6 +157,7 @@ const BookingPage = () => {
               </div>
               <input
                 type="date"
+                disabled
                 // {...register("registrationEnd", { required: false })}
                 placeholder="session end"
                 defaultValue={currentSession.registrationEnd}
@@ -160,42 +167,7 @@ const BookingPage = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-x-4">
-          <div className="w-full">
-            <label className="form-control w-full MY-6">
-              <div className="label">
-                <span className="label-text">
-                  Class Start{""}
-                  <span className="text-orange-600">*</span>
-                </span>
-              </div>
-              <input
-                type="time"
-                // {...register("classStart", { required: true })}
-                placeholder="session start"
-                defaultValue={currentSession.classStart}
-                className="input input-bordered w-full "
-              />
-            </label>
-          </div>
-          <div className="w-full">
-            <label className="form-control w-full MY-6">
-              <div className="label">
-                <span className="label-text">
-                  Class End{""}
-                  <span className="text-orange-600">*</span>
-                </span>
-              </div>
-              <input
-                type="time"
-                // {...register("classEnd", { required: true })}
-                placeholder="session end"
-                defaultValue={currentSession.classEnd}
-                className="input input-bordered w-full "
-              />
-            </label>
-          </div>
-        </div>
+       
         <div className="w-full">
           <label className="form-control w-full MY-6">
             <div className="label">
@@ -207,6 +179,7 @@ const BookingPage = () => {
 
             <input
               type="number"
+              disabled
               // {...register("price", { required: true })}
               placeholder="Price"
               defaultValue={currentSession.price}
@@ -224,6 +197,7 @@ const BookingPage = () => {
             </div>
             <textarea
               // {...register("description", { required: true })}
+              disabled
               className="textarea textarea-bordered h-24"
               defaultValue={currentSession.description}
               placeholder="description"
@@ -241,7 +215,7 @@ const BookingPage = () => {
           />
         </div>
 
-        <button onClick={() => openModal(currentSession)} className="btn">
+        <button onClick={() => openModal(currentSession)} className="btn bg-[#1E90FF] text-white">
           Confirm Booking
         </button>
       </form>

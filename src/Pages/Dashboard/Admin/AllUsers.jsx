@@ -1,10 +1,11 @@
 // import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import SectionTitle from "../../../Shired/SectionTitle";
 // import { useEffect } from "react";
 // import { useQuery } from "@tanstack/react-query";
 // import axios from "axios";
@@ -22,7 +23,6 @@ const AllUsers = () => {
   //     return res.data;
   //   },
   // });
-  
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -100,10 +100,7 @@ const AllUsers = () => {
   return (
     <div>
       <div>
-        <div className="flex justify-evenly py-4">
-          <h2 className="text-3xl">All Users</h2>
-          <h2 className="text-3xl">Total Users: </h2>
-        </div>
+        <SectionTitle heading={"All Users"} />
         <div className="overflow-x-auto">
           <div className="w-1/3">
             <form onSubmit={handleSearch}>
@@ -113,38 +110,31 @@ const AllUsers = () => {
                   name="searchValue"
                   onChange={(e) => setSearchText(e.target.value)}
                   value={searchText}
-                  className="grow"
+                  className="grow border-[#1E90FF] "
                   placeholder="Search"
                 />
-                <button type="submit" className="btn text-white bg-[#000000e7]">
+                <button
+                  type="submit"
+                  className="btn text-white bg-[#1E90FF] -mr-4"
+                >
                   Search
                 </button>
               </label>
-
-              {/* <input
-                type="text"
-                name="searchValue"
-                className="grow input"
-                onChange={(e) => setSearchText(e.target.value)}
-                value={searchText}
-                placeholder="Search"
-              />
-              <input
-                className="btn bg-[#000000ce] text-white"
-                type="submit"
-                value="Search"
-              /> */}
             </form>
+            <br />
+
+            <h3 className="font-bold">Total Users: {allUsers.length}</h3>
           </div>
           <table className="table w-full">
             {/* head */}
-            <thead>
-              <tr>
+            <thead className="bg-[#1E90FF]  text-white">
+              <tr className="text-lg">
                 <th>#</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
-                <th>Action</th>
+                <th>Change Role</th>
+                <th>Remove</th>
               </tr>
             </thead>
             <tbody>
@@ -155,10 +145,13 @@ const AllUsers = () => {
                     <td>{user.name}</td>
                     <td>{user.email}</td>
 
+                    <td>{user.role}</td>
                     <td>
-                      {user.role}
                       <Link to={`/dashboard/updateRole/${user._id}`}>
-                        <button className="btn ">edit</button>
+                        <button className="btn bg-transparent border-none">
+                          {" "}
+                          <FaEdit className="text-2xl" />{" "}
+                        </button>
                       </Link>
                     </td>
                     <td>
@@ -166,7 +159,7 @@ const AllUsers = () => {
                         onClick={() => handleDelete(user)}
                         className="btn btn-ghost btn-lg"
                       >
-                        <FaTrashAlt />
+                        <FaTrashAlt className="text-orange-500"/>
                       </button>
                     </td>
                   </tr>

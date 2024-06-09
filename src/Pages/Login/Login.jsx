@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaGithub } from "react-icons/fa";
@@ -135,6 +135,12 @@ const Login = () => {
               Login
             </button>
           </form>
+          <p className="border-b mt-2 border-gray-300">
+            if you don not have an account. Please go to{" "}
+            <Link to={"/register"} className="text-blue-600">
+              Register
+            </Link>
+          </p>
           <div className="divider">Or</div>
           <div className="space-y-2">
             <button className="btn w-full text-lg" onClick={handleGoogleLogIn}>

@@ -29,9 +29,7 @@ const SessionDetails = () => {
   } = currentData;
 
   const convertToBST = (timeString) => {
-    return moment(timeString)
-      .tz("Asia/Dhaka")
-      .format("MMMM Do YYYY, h:mm:ss a z");
+    return moment(timeString).tz("Asia/Dhaka").format("MMMM Do YYYY");
   };
 
   const currentDate = new Date();
@@ -50,50 +48,54 @@ const SessionDetails = () => {
 
         <div className="p-6">
           <div>
-            <span className="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">
-              Product
-            </span>
-            <h3 className="text-3xl">{title}</h3>
-            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-              {description}
-            </p>
-            <p>Registration Start: {convertToBST(registrationStart)}</p>
-            <p>Registration End: {convertToBST(registrationEnd)}</p>
-            <p>Class Start: {classStart}</p>
-            <p>Class End: {classEnd}</p>
-            <p>Registration Fee: ${price}</p>
-          </div>
-
-          <div className="mt-4">
-            <div className="flex items-center">
-              <div className="flex items-center">
-                <img
-                  className="object-cover h-10 rounded-full"
-                  src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60"
-                  alt="Avatar"
-                />
-                <div>
-                  <p>{tutorName}</p>
-                  <p>{tutorEmail}</p>
-                </div>
+           
+            <div className=" flex flex-col lg:flex-row lg:flex justify-evenly">
+              <div>
+                <h3 className="text-3xl">{title}</h3>
+                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                  {description}
+                </p>
+                <div className="mt-4">
+                  <div className="flex items-center">
+                    <div className="flex items-center">
+                      <img
+                        className="object-cover h-10 rounded-full"
+                        src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60"
+                        alt="Avatar"
+                      />
+                      <div className="ml-2">
+                        <p>{tutorName}</p>
+                        <p>{tutorEmail}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>{" "}
               </div>
+
+              <div className="font-bold space-y-2">
+                <p>Registration Start: {convertToBST(registrationStart)}</p>
+                <p>Registration End: {convertToBST(registrationEnd)}</p>
+                <p>Class Start: {classStart}</p>
+                <p>Class End: {classEnd}</p>
+                <p>Registration Fee: ${price}</p>
+              </div>
+
+              {isRegistrationOpen ? (
+                <Link to={`/bookingPage/${_id}`}>
+                  <button className="btn text-white bg-[#1E90FF] ">Book Now</button>
+                </Link>
+              ) : (
+                <button
+                  disabled
+                  className="btn hover:none  font-bold text-white uppercase transition-colors duration-300 transform bg-red-600 rounded   "
+                >
+                  Closed
+                </button>
+              )}
             </div>
           </div>
 
-          {isRegistrationOpen ? (
-            <Link to={`/bookingPage/${_id}`}>
-              <button className="btn">Book Now</button>
-            </Link>
-          ) : (
-            <button
-              disabled
-              className="btn hover:none  font-bold text-white uppercase transition-colors duration-300 transform bg-red-600 rounded   "
-            >
-              Closed
-            </button>
-          )}
-
-          <div></div>
+         
         </div>
       </div>
     </div>

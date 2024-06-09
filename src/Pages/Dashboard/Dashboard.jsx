@@ -7,73 +7,158 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const [isTutor] = useTutor();
 
+  const activeLink = ["bg-[#FF6347]", "text-white"];
+  const normalLink = "";
+
   const getNavLinks = () => {
     if (isAdmin) {
       return (
         <>
           <li>
-            <NavLink to={"/dashboard/adminHome"}>Admin Home</NavLink>
+            <NavLink
+              to={"/dashboard/allUser"}
+              style={{ fontSize: "17px" }}
+              className={({ isActive }) =>
+                isActive ? activeLink.join(" ") : normalLink
+              }
+            >
+              View All Users
+            </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/allUser"}>View All Users</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/dashboard/allSession"}>
+            <NavLink
+              to={"/dashboard/allSession"}
+              style={{ fontSize: "17px" }}
+              className={({ isActive }) =>
+                isActive ? activeLink.join(" ") : normalLink
+              }
+            >
               View All Study Sessions
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/viewAllMaterials"}>
+            <NavLink
+              to={"/dashboard/allMaterials"}
+              style={{ fontSize: "17px" }}
+              className={({ isActive }) =>
+                isActive ? activeLink.join(" ") : normalLink
+              }
+            >
               View All Materials
             </NavLink>
           </li>
+        
         </>
       );
     } else if (isTutor) {
       return (
         <>
           <li>
-            <NavLink to={"/dashboard/tutorHome"}>Tutor Home</NavLink>
+            <NavLink
+              to={"/dashboard/createSession"}
+              style={{ fontSize: "17px" }}
+              className={({ isActive }) =>
+                isActive ? activeLink.join(" ") : normalLink
+              }
+            >
+              Create Session
+            </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/createSession"}>Create Session</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/dashboard/mySessions"}>My Sessions</NavLink>
+            <NavLink
+              to={"/dashboard/mySessions"}
+              style={{ fontSize: "17px" }}
+              className={({ isActive }) =>
+                isActive ? activeLink.join(" ") : normalLink
+              }
+            >
+              My Sessions
+            </NavLink>
           </li>
 
           <li>
-            <NavLink to={"/dashboard/approvedSession"}>
+            <NavLink
+              to={"/dashboard/approvedSession"}
+              style={{ fontSize: "17px" }}
+              className={({ isActive }) =>
+                isActive ? activeLink.join(" ") : normalLink
+              }
+            >
               Upload Materials
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/myMaterials"}>My Materials</NavLink>
+            <NavLink
+              to={"/dashboard/myMaterials"}
+              style={{ fontSize: "17px" }}
+              className={({ isActive }) =>
+                isActive ? activeLink.join(" ") : normalLink
+              }
+            >
+              My Materials
+            </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/viewAllNotes"}>View All Notes</NavLink>
+            <NavLink
+              to={"/dashboard/viewAllNotes"}
+              style={{ fontSize: "17px" }}
+              className={({ isActive }) =>
+                isActive ? activeLink.join(" ") : normalLink
+              }
+            >
+              View All Notes
+            </NavLink>
           </li>
         </>
       );
     } else {
       return (
-        <>
+        <div className="">
           <li>
-            <NavLink to={"/dashboard/studentHome"}>Student Home</NavLink>
+            <NavLink
+              to={"/dashboard/bookedSession"}
+              style={{ fontSize: "17px" }}
+              className={({ isActive }) =>
+                isActive ? activeLink.join(" ") : normalLink
+              }
+            >
+              Booked Session
+            </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/bookedSession"}>Booked Session</NavLink>
+            <NavLink
+              to={"/dashboard/createNote"}
+              style={{ fontSize: "17px" }}
+              className={({ isActive }) =>
+                isActive ? activeLink.join(" ") : normalLink
+              }
+            >
+              Create Note
+            </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/createNote"}>Create Note</NavLink>
+            <NavLink
+              to={"/dashboard/manageNote"}
+              style={{ fontSize: "17px" }}
+              className={({ isActive }) =>
+                isActive ? activeLink.join(" ") : normalLink
+              }
+            >
+              Manage Personal Note
+            </NavLink>
           </li>
           <li>
-            <NavLink to={"/dashboard/manageNote"}>Manage Personal Note</NavLink>
+            <NavLink
+              to={"/dashboard/allMaterials"}
+              style={{ fontSize: "17px" }}
+              className={({ isActive }) =>
+                isActive ? activeLink.join(" ") : normalLink
+              }
+            >
+              All Materials
+            </NavLink>
           </li>
-          <li>
-            <NavLink to={"/dashboard/allMaterials"}>All Materials</NavLink>
-          </li>
-        </>
+        </div>
       );
     }
   };

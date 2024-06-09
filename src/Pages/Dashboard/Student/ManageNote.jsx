@@ -3,6 +3,9 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { FaRegEdit } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
+import SectionTitle from "../../../Shired/SectionTitle";
 
 const ManageNote = () => {
   const axiosSecure = useAxiosSecure();
@@ -46,7 +49,8 @@ const ManageNote = () => {
 
   return (
     <div>
-      {notes.length}
+      <SectionTitle heading={"Manage Your Note"} />
+      <h3 className="font-bold">Total Notes:{notes.length}</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {notes.map((note) => (
           <div key={note._id}>
@@ -56,14 +60,16 @@ const ManageNote = () => {
                 <p>{note.description}</p>
                 <div className="card-actions justify-end">
                   <Link to={`/dashboard/updateNote/${note._id}`}>
-                    <button className="btn btn-primary">Edit</button>
+                    <button className="btn ">
+                      <FaRegEdit className="text-2xl text-gray-600" />
+                    </button>
                   </Link>
 
                   <button
                     onClick={() => handleDelete(note)}
-                    className="btn btn-primary"
+                    className="btn text-orange-600"
                   >
-                    Remove
+                    <FaRegTrashAlt className="text-2xl" />
                   </button>
                 </div>
               </div>
