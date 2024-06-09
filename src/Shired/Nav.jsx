@@ -1,5 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import { MdLogin } from "react-icons/md";
+import { CgLogOut } from "react-icons/cg";
 
 const Nav = () => {
   const { user, logOut } = useAuth();
@@ -12,31 +14,52 @@ const Nav = () => {
         console.log(error);
       });
   };
+
+  const activeLink = ["bg-[#FF6347]", "text-white"];
+  const normalLink = "";
+
   const navOption = (
-    <>
+    <> 
       <li>
-        <NavLink to={"/"}>Home</NavLink>
+        <NavLink
+          to={"/"}
+          style={{ fontSize: "20px" }}
+          className={({ isActive }) =>
+            isActive ? activeLink.join(" ") : normalLink
+          }
+        >
+          Home
+        </NavLink>
       </li>
       {user && (
         <li>
-          <NavLink to={"/dashboard"}>Dashboard</NavLink>
+          <NavLink
+            to={"/dashboard"}
+            style={{ fontSize: "20px" }}
+            className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          >
+            Dashboard
+          </NavLink>
         </li>
       )}
 
-      {/* <li>
-        <NavLink to={"/login"}>Login</NavLink>
-      </li> */}
       {!user && (
         <li>
-          <NavLink to={"/register"}>Register</NavLink>
+          <NavLink
+            to={"/register"}
+            style={{ fontSize: "20px", listStyle: "none" }}
+            className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          >
+            Register
+          </NavLink>
         </li>
       )}
     </>
   );
   return (
-    <div>
-      <div className="navbar bg-base-100">
-        <div className="navbar-start">
+    <div className="">
+      <div className="navbar py-4 pl-10 shadow-2xl   bg-base-100">
+        <div className="navbar-start ">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -61,24 +84,42 @@ const Nav = () => {
               {navOption}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+
+          <Link to={"/"} className="text-[#1E90FF] text-2xl font-bold">
+            <span className="text-[#FF6347]">Code</span>Journey
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOption}</ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end pr-10 ">
           {user ? (
             <>
-              <img className="w-10 h-10" src={user.photoURL} alt="" />
-              <button onClick={handleLogOut} className="btn">
-                log out
+              <div
+                className="tooltip tooltip-bottom mr-2"
+                data-tip={user.displayName}
+              >
+                <img
+                  className="w-10 h-10 rounded-full"
+                  src={user.photoURL}
+                  alt=""
+                />
+              </div>
+
+              <button
+                onClick={handleLogOut}
+                className="btn text-lg text-white bg-[#FF6347]"
+              >
+                <CgLogOut /> Log Out
               </button>
               {user.status}
             </>
           ) : (
             <>
               <Link to={"/login"}>
-                <button className="btn">login</button>
+                <button className="btn text-white bg-[#1E90FF] text-lg">
+                  <MdLogin /> Login
+                </button>
               </Link>
             </>
           )}

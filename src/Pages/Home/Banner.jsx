@@ -1,45 +1,47 @@
+import banerImg from "../../assets/banner2.jpg";
+
 const Banner = () => {
   return (
-    <div>
-      <header className="bg-white dark:bg-gray-900">
+    <div className="">
+      <header className="bg-white  pl-10  dark:bg-gray-900">
         <div className="lg:flex">
           <div className="flex items-center justify-center w-full px-6 py-8 lg:h-[32rem] lg:w-1/2">
             <div className="max-w-xl">
-              <h2 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">
-                Build Your New{" "}
-                <span className="text-blue-600 dark:text-blue-400">Idea</span>
-              </h2>
+              <h1 className="text-6xl leading-normal text-gray-800 font-semibold  dark:text-white ">
+                Begin Your {""}
+                <span className="text-[#FF6347] dark:text-blue-400">
+                  Coding Journey
+                </span>
+                {""} with Us
+              </h1>
 
               <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 lg:text-base">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Blanditiis commodi cum cupiditate ducimus, fugit harum id
-                necessitatibus odio quam quasi, quibusdam rem tempora
-                voluptates.
+                Welcome to our community! Embark on your coding journey with us,
+                where you will find everything you need to master programming.
+                From beginner tutorials to advanced resources, we provide the
+                tools and support to help you succeed. Start building your
+                future, one line of code at a time!
               </p>
 
               <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
-                <a
-                  href="#"
-                  className="block px-5 py-2 text-sm font-medium tracking-wider text-center text-white transition-colors duration-300 transform bg-gray-900 rounded-md hover:bg-gray-700"
-                >
+                <button className="btn mr-4 btn-outline text-white border-none bg-[#1E90FF] ">
+                  {" "}
                   Get Started
-                </a>
-                <a
-                  href="#"
-                  className="block px-5 py-2 text-sm font-medium tracking-wider text-center text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md lg:mx-4 hover:bg-gray-300"
-                >
+                </button>
+
+                <button className="btn btn-outline text-white border-none bg-[#FF6347] ">
+                  {" "}
                   Learn More
-                </a>
+                </button>
               </div>
             </div>
           </div>
 
-          <div className="w-full h-64 lg:w-1/2 lg:h-auto">
+          <div className="w-full h-64 lg:w-1/2 lg:h-auto pr-10">
             <div
-              className="w-full h-full bg-cover"
+              className="w-full h-full bg-cover object-cover"
               style={{
-                backgroundImage:
-                  "url(https://images.pexels.com/photos/6804067/pexels-photo-6804067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
+                backgroundImage: `url(${banerImg})`,
               }}
             >
               <div className="w-full h-full bg-black opacity-25"></div>

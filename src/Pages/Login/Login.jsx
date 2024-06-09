@@ -2,12 +2,17 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { FcGoogle } from "react-icons/fc";
+import { FaEye, FaGithub } from "react-icons/fa";
+import { useState } from "react";
+import { FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { logInUser, GoogleLogIn, GigHubLogIn } = useAuth();
   const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
+  const [showPass, setShowPass] = useState(true);
 
   const {
     register,
@@ -72,20 +77,25 @@ const Login = () => {
         console.log(error);
       });
   };
+
+  const handleClick = () => {
+    setShowPass(!showPass);
+  };
+
   return (
     <>
-      <h1>login</h1>
       <div className="flex justify-center items-center h-[100vh]">
-        <div>
+        <div className=" p-6 rounded-xl shadow-2xl ">
+          <h3 className="text-3xl mb-6 font-bold text-gray-700">Login</h3>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label className="form-control w-full max-w-xs">
+            <label className="form-control w-full ">
               <div className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text text-lg">Email</span>
               </div>
               <input
                 type="email"
                 placeholder="email"
-                className="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full"
                 {...register("email", { required: true })}
               />
               {errors.email && (
@@ -93,29 +103,48 @@ const Login = () => {
               )}
             </label>
 
-            <label className="form-control w-full max-w-xs">
+            <label className="form-control w-full ">
               <div className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text text-lg">Password</span>
               </div>
-              <input
-                type="password"
-                placeholder="********"
-                className="input input-bordered w-full max-w-xs"
-                {...register("password", { required: true })}
-              />
+              <div className="relative">
+                <input
+                  type={showPass ? "password" : "text"}
+                  placeholder="********"
+                  className="input input-bordered w-full"
+                  {...register("password", { required: true })}
+                />
+                <span
+                  onClick={handleClick}
+                  className="absolute cursor-pointer right-4 top-3"
+                >
+                  {showPass ? (
+                    <FaEyeSlash className="text-3xl" />
+                  ) : (
+                    <FaEye className="text-3xl" />
+                  )}
+                </span>
+              </div>
+
               {errors.password && (
                 <span className="text-red-600">This field is required</span>
               )}
             </label>
-
-            <button className="btn w-full">login</button>
-          </form>
-          <div>
-            <button className="btn" onClick={handleGoogleLogIn}>
-              google
+            <br />
+            <button className="btn w-full bg-[#1E90FF] text-lg text-white">
+              Login
             </button>
-            <button className="btn" onClick={handleGithubLogIn}>
-              Gighub
+          </form>
+          <div className="divider">Or</div>
+          <div className="space-y-2">
+            <button className="btn w-full text-lg" onClick={handleGoogleLogIn}>
+              <FcGoogle className="text-2xl" />
+              Login With Google
+            </button>
+
+            <button className="btn w-full text-lg" onClick={handleGithubLogIn}>
+              <FaGithub />
+              Login With Gighub
             </button>
           </div>
         </div>
