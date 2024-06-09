@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 
 import { useState } from "react";
 
-const Review = () => {
+const Review = ({ id }) => {
   const axiosSecure = useAxiosSecure();
   const { register, handleSubmit, reset } = useForm();
   const [rating, setRating] = useState(0);
@@ -14,6 +14,7 @@ const Review = () => {
     const reviewItem = {
       review: data.review,
       rating: rating,
+      id: id,
     };
 
     const studentReview = await axiosSecure.post("/feedBack", reviewItem);

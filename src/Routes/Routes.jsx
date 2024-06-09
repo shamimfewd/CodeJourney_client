@@ -5,7 +5,6 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import PrivateRoute from "./PrivateRoute";
-import AllProduct from "../Pages/Dashboard/AllProduct";
 import BookedSession from "../Pages/Dashboard/Student/BookedSession";
 import StudentHome from "../Pages/Dashboard/Student/StudentHome";
 import CreateNote from "../Pages/Dashboard/Student/CreateNote";
@@ -27,6 +26,8 @@ import EditMaterial from "../Pages/Dashboard/Tutor/EditMaterial";
 import ViewAllNotes from "../Pages/Dashboard/Tutor/ViewAllNotes";
 import BookingPage from "../Pages/BookingPage";
 import BookedDetails from "../Pages/Dashboard/Student/BookedDetails";
+import AllMaterials from "../Pages/Dashboard/Student/AllMaterials";
+import Payment from "../Pages/Dashboard/Payment";
 
 const router = createBrowserRouter([
   {
@@ -90,13 +91,17 @@ const router = createBrowserRouter([
       },
       {
         path: "allMaterials",
-        element: <AllProduct />,
+        element: <AllMaterials />,
       },
       {
         path: "updateNote/:id",
         element: <UpdateNote />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/upNote/${params.id}`),
+      },
+      {
+        path: "payment",
+        element: <Payment />,
       },
 
       // admin routes

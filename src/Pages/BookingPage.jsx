@@ -2,9 +2,14 @@ import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import Payment from "./Dashboard/Payment";
 
 const BookingPage = () => {
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [currentItem, setCurrentItem] = useState("");
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const { register, handleSubmit, reset } = useForm();
@@ -15,40 +20,53 @@ const BookingPage = () => {
   const currentSession = loadedData.find((item) => item._id === id);
 
   const onSubmit = async (data) => {
-    reset();
-    const sessionItem = {
-      title: data.title,
-      tutorName: data.tutorName,
-      tutorEmail: data.tutorEmail,
-      registrationStart: new Date(data.registrationStart),
-      registrationEnd: new Date(data.registrationEnd),
-      description: data.description,
-      classStart: data.classStart,
-      classEnd: data.classEnd,
-      price: parseInt(data.price),
-      userEmail: user.email,
-      status: "Pending",
-    };
-
-    const bookedSession = await axiosSecure.post(
-      "/bookingSession",
-      sessionItem
-    );
-
-    if (bookedSession.data.insertedId) {
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: `Booked successfully`,
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      navigate("/");
-    }
+    // reset();
+    // const sessionItem = {
+    //   title: data.title,
+    //   tutorName: data.tutorName,
+    //   tutorEmail: data.tutorEmail,
+    //   registrationStart: new Date(data.registrationStart),
+    //   registrationEnd: new Date(data.registrationEnd),
+    //   description: data.description,
+    //   classStart: data.classStart,
+    //   classEnd: data.classEnd,
+    //   price: parseInt(data.price),
+    //   userEmail: user.email,
+    //   status: "Pending",
+    // };
+    // const bookedSession = await axiosSecure.post(
+    //   "/bookingSession",
+    //   sessionItem
+    // );
+    //   if (bookedSession.data.insertedId) {
+    //     Swal.fire({
+    //       position: "top-end",
+    //       icon: "success",
+    //       title: `Booked successfully`,
+    //       showConfirmButton: false,
+    //       timer: 1500,
+    //     });
+    //     navigate("/");
+    //   }
   };
+
+  function openModal(item) {
+    setIsOpen(true);
+    setCurrentItem(item);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+    setCurrentItem("");
+  }
   return (
     <div>
-      <form className="w-8/12 mx-auto" onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="w-8/12 mx-auto">
         <div>
           <label className="form-control w-full MY-6">
             <div className="label">
@@ -60,7 +78,7 @@ const BookingPage = () => {
             <input
               type="text"
               placeholder="session title"
-              {...register("title", { required: true })}
+              // {...register("title", { required: true })}
               defaultValue={currentSession.title}
               className="input input-bordered w-full "
             />
@@ -79,7 +97,7 @@ const BookingPage = () => {
               <input
                 type="text"
                 placeholder="tutor name"
-                {...register("tutorName", { required: true })}
+                // {...register("tutorName", { required: true })}
                 defaultValue={currentSession.tutorName}
                 className="input input-bordered w-full "
               />
@@ -97,7 +115,7 @@ const BookingPage = () => {
               <input
                 type="email"
                 placeholder="tutor email"
-                {...register("tutorEmail", { required: true })}
+                // {...register("tutorEmail", { required: true })}
                 defaultValue={currentSession.tutorEmail}
                 className="input input-bordered w-full "
               />
@@ -116,7 +134,7 @@ const BookingPage = () => {
               </div>
               <input
                 type="date"
-                {...register("registrationStart", { required: false })}
+                // {...register("registrationStart", { required: false })}
                 placeholder="session start"
                 defaultValue={currentSession.registrationStart}
                 className="input input-bordered w-full "
@@ -133,7 +151,7 @@ const BookingPage = () => {
               </div>
               <input
                 type="date"
-                {...register("registrationEnd", { required: false })}
+                // {...register("registrationEnd", { required: false })}
                 placeholder="session end"
                 defaultValue={currentSession.registrationEnd}
                 className="input input-bordered w-full "
@@ -153,7 +171,7 @@ const BookingPage = () => {
               </div>
               <input
                 type="time"
-                {...register("classStart", { required: true })}
+                // {...register("classStart", { required: true })}
                 placeholder="session start"
                 defaultValue={currentSession.classStart}
                 className="input input-bordered w-full "
@@ -170,7 +188,7 @@ const BookingPage = () => {
               </div>
               <input
                 type="time"
-                {...register("classEnd", { required: true })}
+                // {...register("classEnd", { required: true })}
                 placeholder="session end"
                 defaultValue={currentSession.classEnd}
                 className="input input-bordered w-full "
@@ -189,7 +207,7 @@ const BookingPage = () => {
 
             <input
               type="number"
-              {...register("price", { required: true })}
+              // {...register("price", { required: true })}
               placeholder="Price"
               defaultValue={currentSession.price}
               className="input input-bordered w-full "
@@ -205,7 +223,7 @@ const BookingPage = () => {
               </span>
             </div>
             <textarea
-              {...register("description", { required: true })}
+              // {...register("description", { required: true })}
               className="textarea textarea-bordered h-24"
               defaultValue={currentSession.description}
               placeholder="description"
@@ -213,7 +231,19 @@ const BookingPage = () => {
           </label>
         </div>
 
-        <button className="btn">Confirm Booking</button>
+        <div className="pt-10">
+          <Payment
+            afterOpenModal={afterOpenModal}
+            openModal={openModal}
+            closeModal={closeModal}
+            modalIsOpen={modalIsOpen}
+            item={currentItem}
+          />
+        </div>
+
+        <button onClick={() => openModal(currentSession)} className="btn">
+          Confirm Booking
+        </button>
       </form>
     </div>
   );

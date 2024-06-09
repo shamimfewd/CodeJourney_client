@@ -39,7 +39,7 @@ const Banner = () => {
               className="w-full h-full bg-cover"
               style={{
                 backgroundImage:
-                  "url(https://images.unsplash.com/photo-1508394522741-82ac9c15ba69?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=748&q=80)",
+                  "url(https://images.pexels.com/photos/6804067/pexels-photo-6804067.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
               }}
             >
               <div className="w-full h-full bg-black opacity-25"></div>

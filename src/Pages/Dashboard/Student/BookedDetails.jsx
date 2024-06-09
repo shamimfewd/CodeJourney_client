@@ -7,7 +7,6 @@ const BookedDetails = () => {
   const loadedData = useLoaderData();
   const { id } = useParams();
   const currentData = loadedData.find((item) => item._id === id);
-  console.log(currentData);
 
   if (!currentData) {
     return <div>Session not found</div>;
@@ -97,10 +96,10 @@ const BookedDetails = () => {
             </div>
           </div>
           <div className="w-72">
-            <Review />
+            <Review id={_id} />
 
             <div>
-              <ShowReview />
+              <ShowReview  />
             </div>
           </div>
         </div>
