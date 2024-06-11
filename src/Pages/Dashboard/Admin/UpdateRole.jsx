@@ -8,13 +8,13 @@ import SectionTitle from "../../../Shired/SectionTitle";
 const UpdateRole = () => {
   const data = useLoaderData();
   const [updaterole, setUpdateRol] = useState(data);
+  console.log(updaterole);
   const { _id } = updaterole;
 
   const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
-
     formState: { errors },
   } = useForm();
 
@@ -23,7 +23,8 @@ const UpdateRole = () => {
       role: data.role,
     };
 
-    await axiosSecure.patch(`/users/${_id}`, roleStatue).then((res) => {
+  await axiosSecure.patch(`/upUsers/${_id}`, roleStatue).then((res) => {
+    console.log(res.data);
       if (res.data.modifiedCount > 0) {
         // show success popup
         Swal.fire({

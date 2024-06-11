@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 <FaStar />;
 const SessionCard = ({ card }) => {
+  console.log('session card ',card);
   const {
     _id,
     title,

@@ -30,7 +30,7 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     // image upload to imgbb and then get an url
-    // const imageFile = { photo: data.photo[0] };
+   
     const formData = new FormData();
     formData.append("image", data.photo[0]);
     console.log(formData);
@@ -50,9 +50,9 @@ const Register = () => {
           console.log(result.user);
 
           // update user profile
-          updateUserProfile(data.name, imageUrl) 
+          updateUserProfile(data.name, imageUrl)
             .then(() => {
-              setUser({ ...user, photoURL: imageUrl, displayName: data.name });
+              // setUser({ ...user, photoURL: imageUrl, displayName: data.name });
               // create user entry in the database
               const userInfo = {
                 name: data.name,
