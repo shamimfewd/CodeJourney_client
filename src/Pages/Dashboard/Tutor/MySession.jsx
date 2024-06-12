@@ -37,7 +37,7 @@ const MySession = () => {
   }
 
   return (
-    <div className="lg:mt-10">
+    <div className="lg:mx-10">
       <SectionTitle
         heading={"My Session"}
         subHeading={"Sessions Created by You"}

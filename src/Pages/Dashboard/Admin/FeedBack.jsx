@@ -24,13 +24,14 @@ const FeedBack = ({
 }) => {
   const axiosSecure = useAxiosSecure();
   Modal.setAppElement("#root");
-
+console.log(item.tutorEmail);
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     const rejectionItem = {
       reason: data.reason,
       feedback: data.feedback,
+      tutorEmail: item.tutorEmail,
     };
 
     const feedbackTutor = await axiosSecure.post(
@@ -46,7 +47,7 @@ const FeedBack = ({
         showConfirmButton: false,
         timer: 1500,
       });
-      closeModal()
+      closeModal();
     }
   };
   return (

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <div>
@@ -17,7 +19,7 @@ const Footer = () => {
                   placeholder="Email Address"
                 />
 
-                <button className="w-full px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
+                <button className="w-full px-6 py-2.5 text-sm font-medium tracking-wider  text-white bg-[#1E90FF] transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none  rounded-lg hover:bg-[#1E90FF] focus:ring focus:ring-gray-300 focus:ring-opacity-80">
                   Subscribe
                 </button>
               </div>
@@ -81,13 +83,14 @@ const Footer = () => {
           <hr className="my-6 border-gray-200 md:my-8 dark:border-gray-700" />
 
           <div className="flex items-center justify-between">
-            <a href="#">
-              <img
-                className="w-auto h-7"
-                src="https://merakiui.com/images/full-logo.svg"
-                alt=""
-              />
-            </a>
+            <div className="flex justify-center items-center gap-2">
+              <a href="#">
+                <img className="w-auto h-7" src="fev.png" alt="" />
+              </a>
+              <Link to={"/"} className="text-[#1E90FF] text-2xl font-bold">
+                <span className="text-[#FF6347]">Code</span>Journey
+              </Link>
+            </div>
 
             <div className="flex -mx-2">
               <a
