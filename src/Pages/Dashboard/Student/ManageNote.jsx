@@ -39,8 +39,7 @@ const ManageNote = () => {
               icon: "success",
             });
 
-            // const remaining = notes.filter((item) => item._id !== user._id);
-            // notes.push(remaining);
+        
           }
         });
       }

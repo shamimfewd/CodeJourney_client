@@ -101,7 +101,7 @@ const AllUsers = () => {
     <div>
       <div>
         <SectionTitle heading={"All Users"} />
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto lg:ml-10 lg:mr-10">
           <div className="w-1/3">
             <form onSubmit={handleSearch}>
               <label className="input input-bordered flex items-center gap-2">

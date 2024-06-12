@@ -63,7 +63,7 @@ const AuthProvider = ({ children }) => {
     signOut(auth);
   };
 
-  // observer
+  
  
   // observer
   useEffect(() => {

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import moment from "moment-timezone";
+import useAuth from "../Hooks/useAuth";
 
 const SessionDetails = () => {
   const loadedData = useLoaderData();
+  const { user } = useAuth();
   const [sessionData, setSessionData] = useState(loadedData);
 
   const { id } = useParams();
@@ -37,6 +39,7 @@ const SessionDetails = () => {
   const regiEnd = new Date(registrationEnd);
 
   const isRegistrationOpen = currentDate >= regiStart && currentDate <= regiEnd;
+  const isStudent = user.role !== "student";
   return (
     <div>
       <div className="max-w-7xl mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -48,13 +51,14 @@ const SessionDetails = () => {
 
         <div className="p-6">
           <div>
-           
-            <div className=" flex flex-col lg:flex-row lg:flex justify-evenly">
-              <div>
-                <h3 className="text-3xl">{title}</h3>
-                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                  {description}
-                </p>
+            <div className=" flex flex-col gap-8 lg:flex-row lg:flex justify-evenly">
+              <div className="flex-1">
+                <div>
+                  <h3 className="text-3xl">{title}</h3>
+                  <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                    {description}
+                  </p>
+                </div>
                 <div className="mt-4">
                   <div className="flex items-center">
                     <div className="flex items-center">
@@ -72,30 +76,40 @@ const SessionDetails = () => {
                 </div>{" "}
               </div>
 
-              <div className="font-bold space-y-2">
+              <div className="font-bold space-y-2 flex-1 lg:mt-12">
                 <p>Registration Start: {convertToBST(registrationStart)}</p>
                 <p>Registration End: {convertToBST(registrationEnd)}</p>
                 <p>Class Start: {classStart}</p>
                 <p>Class End: {classEnd}</p>
                 <p>Registration Fee: ${price}</p>
-              </div>
+                <br />
 
-              {isRegistrationOpen ? (
-                <Link to={`/bookingPage/${_id}`}>
-                  <button className="btn text-white bg-[#1E90FF] ">Book Now</button>
-                </Link>
-              ) : (
-                <button
-                  disabled
-                  className="btn hover:none  font-bold text-white uppercase transition-colors duration-300 transform bg-red-600 rounded   "
-                >
-                  Closed
-                </button>
-              )}
+                {isRegistrationOpen ? (
+                  isStudent ? (
+                    <Link to={`/bookingPage/${_id}`}>
+                      <button className="btn text-white bg-[#1E90FF]">
+                        Book Now
+                      </button>
+                    </Link>
+                  ) : (
+                    <button
+                      disabled
+                      className="btn font-bold text-white bg-gray-400 rounded"
+                    >
+                      Book Now
+                    </button>
+                  )
+                ) : (
+                  <button
+                    disabled
+                    className="btn font-bold text-white bg-red-600 rounded"
+                  >
+                    Closed
+                  </button>
+                )}
+              </div>
             </div>
           </div>
-
-         
         </div>
       </div>
     </div>

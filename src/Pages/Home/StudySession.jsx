@@ -17,7 +17,7 @@ const StudySession = () => {
     queryKey: ["session"],
     queryFn: async () => {
       const res = await axiosPublic.get("/sessionAtHome");
-      console.log(res.data);
+     
       return res.data;
     },
   });

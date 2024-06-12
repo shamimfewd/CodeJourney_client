@@ -6,11 +6,11 @@ import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import PrivateRoute from "./PrivateRoute";
 import BookedSession from "../Pages/Dashboard/Student/BookedSession";
-import StudentHome from "../Pages/Dashboard/Student/StudentHome";
+
 import CreateNote from "../Pages/Dashboard/Student/CreateNote";
 import ManageNote from "../Pages/Dashboard/Student/ManageNote";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
-import TutorHome from "../Pages/Dashboard/Tutor/TutorHome";
+
 import CreateSession from "../Pages/Dashboard/Tutor/CreateSession";
 import SessionDetails from "../Pages/SessionDetails";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
@@ -28,6 +28,8 @@ import BookingPage from "../Pages/BookingPage";
 import BookedDetails from "../Pages/Dashboard/Student/BookedDetails";
 import AllMaterials from "../Pages/Dashboard/Student/AllMaterials";
 import Payment from "../Pages/Dashboard/Payment";
+import TutorRoute from "./TutorRoute";
+import UpdatePrice from "../Pages/Dashboard/Admin/UpdatePrice";
 
 const router = createBrowserRouter([
   {
@@ -40,17 +42,29 @@ const router = createBrowserRouter([
       },
       {
         path: "/bookingPage/:id",
-        element: <BookingPage />,
+        element: (
+          <PrivateRoute>
+            <BookingPage />
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/session"),
       },
       {
         path: "/details/:id",
-        element: <SessionDetails />,
+        element: (
+          <PrivateRoute>
+            <SessionDetails />
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/sessionDetails"),
       },
       {
         path: "/bookedDetails/:id",
-        element: <BookedDetails />,
+        element: (
+          <PrivateRoute>
+            <BookedDetails />
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/bookedDetail"),
       },
     ],
@@ -73,10 +87,6 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
-      {
-        path: "studentHome",
-        element: <StudentHome />,
-      },
       {
         path: "bookedSession",
         element: <BookedSession />,
@@ -157,42 +167,66 @@ const router = createBrowserRouter([
 
       {
         path: "allMaterials",
-        element: <AllMaterials />,
+        element: (
+          <AdminRoute>
+            <AllMaterials />
+          </AdminRoute>
+        ),
       },
-      // {
-      //   path: "priceUpdateModal/:id",
-      //   element: <ModalCom />,
-      //   loader: ({ params }) =>
-      //     fetch(`http://localhost:5000/session/${params.id}`),
-      // },
+      {
+        path: "updatePrice/:id",
+        element: (
+          <AdminRoute>
+            <UpdatePrice />
+          </AdminRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/updatePrice/${params.id}`),
+      },
 
       // tutor routes
 
       {
-        path: "tutorHome",
-        element: <TutorHome />,
-      },
-      {
         path: "createSession",
-        element: <CreateSession />,
+        element: (
+          <TutorRoute>
+            <CreateSession />
+          </TutorRoute>
+        ),
       },
 
       {
         path: "mySessions",
-        element: <MySession />,
+        element: (
+          <TutorRoute>
+            <MySession />
+          </TutorRoute>
+        ),
       },
 
       {
         path: "approvedSession",
-        element: <ApprovedSession />,
+        element: (
+          <TutorRoute>
+            <ApprovedSession />
+          </TutorRoute>
+        ),
       },
       {
         path: "myMaterials",
-        element: <MyMaterials />,
+        element: (
+          <TutorRoute>
+            <MyMaterials />
+          </TutorRoute>
+        ),
       },
       {
         path: "updateMaterial/:id",
-        element: <EditMaterial />,
+        element: (
+          <TutorRoute>
+            <EditMaterial />
+          </TutorRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/upMaterial/${params.id}`),
       },

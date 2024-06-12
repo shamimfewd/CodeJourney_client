@@ -1,4 +1,5 @@
 // import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import SectionTitle from "../../../Shired/SectionTitle";
 import { useEffect, useState } from "react";
@@ -37,11 +38,38 @@ const AllMaterials = () => {
   const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
 
   const handlePaginationBtn = (value) => {
-    console.log(value);
     setCurrentPage(value);
+  };
+
+  // const handleDownload = (image) => {
+  //   const element = document.createElement("a");
+  //   const file = new Blob([image], { type: "image/jpeg" });
+
+  //   element.href = URL.createObjectURL(file);
+  //   element.download = "image.jpg";
+  //   document.body.appendChild(element);
+  //   element.click();
+  // };
+
+  const handleDownload = async (imageUrl) => {
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+
+    const element = document.createElement("a");
+    const file = new Blob([blob], { type: blob.type });
+    const extension = blob.type.split("/")[1];
+    
+    element.href = URL.createObjectURL(file);
+    element.download = `image.${extension}`;
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
   };
   return (
     <div>
+      <Helmet>
+        <title>CodeJourney - Dashboard/All Materials</title>
+      </Helmet>
       <div className="pr-10">
         <SectionTitle heading={"All Materials"} />
         <h3 className="font-bold">Total Materials:{materials.length}</h3>
@@ -58,6 +86,12 @@ const AllMaterials = () => {
                 <h2 className="card-title">{material.title}</h2>
 
                 <div className="card-actions justify-end">
+                  <button
+                    onClick={() => handleDownload(material.image)}
+                    className="btn text-white bg-[#1E90FF] "
+                  >
+                    Download
+                  </button>
                   <button className="btn text-white bg-[#1E90FF] ">
                     <a href={material.link}>Drive Link</a>
                   </button>

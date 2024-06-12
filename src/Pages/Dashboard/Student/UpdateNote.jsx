@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import { useLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const UpdateNote = () => {
 
@@ -37,6 +38,9 @@ const UpdateNote = () => {
   };
   return (
     <div>
+            <Helmet>
+        <title>CodeJourney - Dashboard/Update Note</title>
+      </Helmet>
       <h1>update page</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>

@@ -92,7 +92,7 @@ const CheckOut = ({ item, closeModal }) => {
           "/purchaseSession",
           paymentInfo
         );
-        console.log(data);
+     
         closeModal();
         Swal.fire({
           position: "top-end",

@@ -1,13 +1,13 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import useAdmin from "../Hooks/useAdmin";
+import useTutor from "../Hooks/useTutor";
 
-const AdminRoute = ({ children }) => {
+const TutorRoute = ({ children }) => {
   const location = useLocation();
   const { user, loading } = useAuth();
-  const [isAdmin, isAdminLoading] = useAdmin();
+  const [isTutor, isTutorLoading] = useTutor();
 
-  if (loading || isAdminLoading) {
+  if (loading || isTutorLoading) {
     return (
       <div className="flex justify-center items-center h-[100vh]">
         <span className="loading loading-infinity loading-4xl"></span>
@@ -15,11 +15,11 @@ const AdminRoute = ({ children }) => {
     );
   }
 
-  if (user && isAdmin) {
+  if (user && isTutor) {
     return children;
   }
 
   return <Navigate to={"/"} state={{ from: location }} replace />;
 };
 
-export default AdminRoute;
+export default TutorRoute;

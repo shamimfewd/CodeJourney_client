@@ -1,16 +1,14 @@
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import SectionTitle from "../../../Shired/SectionTitle";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
-
 const AllSession = ({ id }) => {
   const axiosSecure = useAxiosSecure();
   const [statusData, setStatusData] = useState([]);
-
 
   // featch all session
   const getData = async () => {
@@ -34,50 +32,46 @@ const AllSession = ({ id }) => {
     }
   }, [id]);
 
+  // change status
   const handleStatus = async (id, prevSta, status, price) => {
     console.log(price);
     if (prevSta === status) return;
     if (prevSta === "Approved")
       if (prevSta === "Rejected") {
         handleReject(id);
-       
       }
     await axiosSecure.patch(`/updateSta/${id}`, { status });
-
     getData();
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm();
 
-  const onSubmit = async (data) => {
-    const upPrice = {
-      price: data.price,
-    };
+  // const onSubmit = async (data) => {
+  //   const upPrice = {
+  //     price: data.price,
+  //   };
 
-    const priceUpdate = await axiosSecure.patch(`/updatePrice/${id}`, upPrice);
-    if (priceUpdate.data.modifiedCount > 0) {
-      // show success popup
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: `Price Successfully Updated`,
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    }
-
-
-  };
+  //   const priceUpdate = await axiosSecure.patch(`/updatePrice/${id}`, upPrice);
+  //   if (priceUpdate.data.modifiedCount > 0) {
+  //     // show success popup
+  //     Swal.fire({
+  //       position: "top-end",
+  //       icon: "success",
+  //       title: `Price Successfully Updated`,
+  //       showConfirmButton: false,
+  //       timer: 1500,
+  //     });
+  //   }
+  // };
 
   const handleReject = (id) => {
     const remaining = statusData.filter((item) => item._id !== id);
     setStatusData(remaining);
   };
-
 
   // delete session
   const handleRemove = (_id) => {
@@ -98,7 +92,6 @@ const AllSession = ({ id }) => {
               text: "session has been deleted.",
               icon: "success",
             });
-
             const remaining = statusData.filter((item) => item._id !== _id);
             setStatusData(remaining);
           }
@@ -108,42 +101,9 @@ const AllSession = ({ id }) => {
   };
 
   return (
-    <div className="mt-10 mr-10">
-    <SectionTitle  heading={'All Session'}/>
-      {/* ======================== */}
-      <dialog id="my_modal_1" className="modal">
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">
-            {/* This Session is Paid: {sessionCard.price} */}
-          </h3>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <label className="form-control w-full max-w-xs">
-              <div className="label">
-                <span className="label-text">Session Price</span>
-              </div>
-              <input
-                type="number"
-                {...register("price", { required: true })}
-                placeholder="Price"
-                className="input input-bordered w-full max-w-xs"
-              />
-              {errors.price && <span>This field is required</span>}
-            </label>
+    <div className="mt-10 lg:ml-10 lg:mr-10">
+      <SectionTitle heading={"All Session"} />
 
-            <button className="btn">submit</button>
-          </form>
-          <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn">Close</button>
-            </form>
-          </div>
-        </div>
-      </dialog>
-
-
-     
-      {/* ================================================ */}
       <div>
         <div className="overflow-x-auto">
           <table className="table">
@@ -180,29 +140,21 @@ const AllSession = ({ id }) => {
                       {item.status}
                     </span>
                   </td>
+
                   <td>
                     <details className="dropdown">
                       <summary className="m-1 btn">Action</summary>
                       <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
                         <li
-                          onClick={() =>
-                            handleStatus(
-                              item._id,
-                              item.status,
-                              "Approved",
-                              item.price
-                            )
-                          }
+                          onClick={() => {
+                            handleStatus(item._id, item.status, "Approved");
+                          }}
                         >
-                          <a
-                            className=""
-                            onClick={() =>
-                              document.getElementById("my_modal_1").showModal()
-                            }
-                          >
-                            Approve
-                          </a>
+                          <Link to={`/dashboard/updatePrice/${item._id}`}>
+                            <a>Approved</a>
+                          </Link>
                         </li>
+
                         <li
                           onClick={() =>
                             handleStatus(item._id, item.status, "Rejected")
@@ -219,12 +171,12 @@ const AllSession = ({ id }) => {
                       className="cursor-pointer"
                       to={`/dashboard/updateSession/${item._id}`}
                     >
-                     <FaEdit  className="text-2xl"/>
+                      <FaEdit className="text-2xl" />
                     </Link>{" "}
                   </td>
                   <td>
                     <button onClick={() => handleRemove(item._id)}>
-                      <FaTrash  className="text-[#FF6347] text-2xl"/>
+                      <FaTrash className="text-[#FF6347] text-2xl" />
                     </button>
                   </td>
                 </tr>

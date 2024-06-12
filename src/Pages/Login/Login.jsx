@@ -9,10 +9,11 @@ import { FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { logInUser, GoogleLogIn, GigHubLogIn } = useAuth();
-  const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const [showPass, setShowPass] = useState(true);
+
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -25,9 +26,6 @@ const Login = () => {
 
     logInUser(email, password)
       .then(() => {
-        // toast.success("login successfully");
-        // navigate(location?.state || "/");
-
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -38,11 +36,6 @@ const Login = () => {
   const handleGoogleLogIn = () => {
     GoogleLogIn()
       .then((result) => {
-        // if (result.user) {
-        //   toast.success("Login Successfully");
-        //   navigate(location?.state || "/");
-        // }
-
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,
@@ -60,10 +53,6 @@ const Login = () => {
   const handleGithubLogIn = () => {
     GigHubLogIn()
       .then((result) => {
-        // if (result.user) {
-        //   toast.success("Login Successfully");
-        //   navigate(location?.state || "/");
-        // }
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,

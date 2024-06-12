@@ -2,6 +2,8 @@ import { NavLink, Outlet } from "react-router-dom";
 import { GoSidebarCollapse } from "react-icons/go";
 import useAdmin from "../../Hooks/useAdmin";
 import useTutor from "../../Hooks/useTutor";
+import { FaBook, FaHome, FaList, FaUsers } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
@@ -22,7 +24,7 @@ const Dashboard = () => {
                 isActive ? activeLink.join(" ") : normalLink
               }
             >
-              View All Users
+              <FaUsers /> View All Users
             </NavLink>
           </li>
           <li>
@@ -33,7 +35,7 @@ const Dashboard = () => {
                 isActive ? activeLink.join(" ") : normalLink
               }
             >
-              View All Study Sessions
+              <FaBook /> View All Study Sessions
             </NavLink>
           </li>
           <li>
@@ -44,10 +46,9 @@ const Dashboard = () => {
                 isActive ? activeLink.join(" ") : normalLink
               }
             >
-              View All Materials
+              <FaList /> View All Materials
             </NavLink>
           </li>
-        
         </>
       );
     } else if (isTutor) {
@@ -114,6 +115,9 @@ const Dashboard = () => {
     } else {
       return (
         <div className="">
+              <Helmet>
+        <title>CodeJourney - Dashboard</title>
+      </Helmet>
           <li>
             <NavLink
               to={"/dashboard/bookedSession"}
@@ -185,7 +189,9 @@ const Dashboard = () => {
 
             <div className="divider"></div>
             <li>
-              <NavLink to={"/"}>Home</NavLink>
+              <NavLink to={"/"}>
+                <FaHome /> Home
+              </NavLink>
             </li>
           </ul>
         </div>
