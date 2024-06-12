@@ -114,11 +114,7 @@ const router = createBrowserRouter([
         loader: () => fetch(`https://assignment12-server-inky.vercel.app/bookedeStudent`),
       },
 
-      // {
-      //   path: "/bookedDetail/:id",
-      //   element: <BookedDetails />,
-      //   loader: () => fetch("https://assignment12-server-inky.vercel.app/bookedDetail"),
-      // },
+    
 
       // admin routes
 

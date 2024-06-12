@@ -28,7 +28,7 @@ const ShowReview = () => {
 
   return (
     <div>
-      <h1>{reviews.length}</h1>
+    
       {reviews.map((rev) => (
         <div key={rev._id} className="bg-white my-2 p-4 shadow-xl rounded-md">
           <span>{renderStars(rev.rating)}</span>

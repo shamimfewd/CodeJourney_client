@@ -7,7 +7,7 @@ import useAuth from "../../../Hooks/useAuth";
 
 const SingleBooked = () => {
   const loadedData = useLoaderData();
-  const { user } = useAuth();
+//   const { user } = useAuth();
   const [sessionData, setSessionData] = useState(loadedData);
 
   const { id } = useParams();
@@ -27,7 +27,7 @@ const SingleBooked = () => {
     classStart,
     registrationEnd,
     registrationStart,
-    status,
+   
     tutorEmail,
     tutorName,
   } = currentData;
@@ -46,7 +46,7 @@ const SingleBooked = () => {
 
   return (
     <div>
-      <div className="">
+      <div className=" mx-4">
         <div className="max-w-7xl flex  mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
           <div className="flex-1">
             <img
@@ -101,7 +101,7 @@ const SingleBooked = () => {
               )}
             </div>
           </div>
-          <div className="w-72">
+          <div className="w-72 p-4">
             <Review id={_id} />
 
             <div>

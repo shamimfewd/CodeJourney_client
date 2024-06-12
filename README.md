@@ -6,7 +6,7 @@
 
 ## Project Name is : CodeJourney
 
-Live Link: 
+Live Link: https://cozy-empanada-89974c.netlify.app/
 ## Features 
 - authentication system
 - payment system with Stripe

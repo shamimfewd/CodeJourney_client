@@ -29,7 +29,7 @@ const Review = ({ id }) => {
       });
     }
 
-    console.log(data);
+   
   };
   return (
     <div>
@@ -58,8 +58,8 @@ const Review = ({ id }) => {
             ></textarea>
           </label>
         </div>
-
-        <button className="btn">Post</button>
+<br />
+        <button className="btn text-white bg-[#1E90FF]">Post</button>
       </form>
     </div>
   );

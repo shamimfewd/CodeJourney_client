@@ -10,8 +10,7 @@ const BookedSession = () => {
   const { data: sessions = [] } = useQuery({
     queryKey: ["sessions", user.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/getPurchaseSession`);
-
+      const res = await axiosSecure.get(`/getPurchaseSession/${user.email}`);
       return res.data;
     },
   });
@@ -26,9 +25,10 @@ const BookedSession = () => {
               <h2 className="card-title">{session.title}</h2>
               <p>{session.description.slice(0, 50)}...</p>
               <div className="card-actions justify-end">
-              
-                <Link to={`/dashboard/singleBooked`}>
-                  <button className="btn text-white bg-[#1E90FF]">View Details</button>
+                <Link to={`/dashboard/singleBooked/${session._id}`}>
+                  <button className="btn text-white bg-[#1E90FF]">
+                    View Details
+                  </button>
                 </Link>
               </div>
             </div>

@@ -39,7 +39,7 @@ const SessionDetails = () => {
   const regiEnd = new Date(registrationEnd);
 
   const isRegistrationOpen = currentDate >= regiStart && currentDate <= regiEnd;
-  const isStudent = user.role !== "student";
+  
   return (
     <div>
       <div className="max-w-7xl mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
@@ -85,20 +85,15 @@ const SessionDetails = () => {
                 <br />
 
                 {isRegistrationOpen ? (
-                  isStudent ? (
-                    <Link to={`/bookingPage/${_id}`}>
-                      <button className="btn text-white bg-[#1E90FF]">
-                        Book Now
-                      </button>
-                    </Link>
-                  ) : (
+                  <Link to={`/bookingPage/${_id}`}>
                     <button
-                      disabled
-                      className="btn font-bold text-white bg-gray-400 rounded"
+                      className={`btn text-white bg-[#1E90FF] 
+                       
+                      `}
                     >
                       Book Now
                     </button>
-                  )
+                  </Link>
                 ) : (
                   <button
                     disabled
