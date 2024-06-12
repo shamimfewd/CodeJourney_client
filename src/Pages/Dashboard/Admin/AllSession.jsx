@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import SectionTitle from "../../../Shired/SectionTitle";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import FeedBack from "./FeedBack";
 
 const AllSession = ({ id }) => {
   const axiosSecure = useAxiosSecure();
@@ -99,6 +100,25 @@ const AllSession = ({ id }) => {
       }
     });
   };
+  // reject modal
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [currentItem, setCurrentItem] = useState("");
+  let subtitle;
+
+  function openModal(item) {
+    setIsOpen(true);
+    setCurrentItem(item);
+  }
+
+  function afterOpenModal() {
+    subtitle.style.color = "#f00";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+    setCurrentItem("");
+  }
 
   return (
     <div className="mt-10 lg:ml-10 lg:mr-10">
@@ -160,7 +180,7 @@ const AllSession = ({ id }) => {
                             handleStatus(item._id, item.status, "Rejected")
                           }
                         >
-                          <a>Reject</a>
+                          <a onClick={() => openModal(item)}>Reject</a>
                         </li>
                       </ul>
                     </details>
@@ -184,6 +204,14 @@ const AllSession = ({ id }) => {
             </tbody>
           </table>
         </div>
+
+        <FeedBack
+          afterOpenModal={afterOpenModal}
+          openModal={openModal}
+          closeModal={closeModal}
+          modalIsOpen={modalIsOpen}
+          item={currentItem}
+        />
       </div>
     </div>
   );

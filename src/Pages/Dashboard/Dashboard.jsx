@@ -4,6 +4,7 @@ import useAdmin from "../../Hooks/useAdmin";
 import useTutor from "../../Hooks/useTutor";
 import { FaBook, FaHome, FaList, FaUsers } from "react-icons/fa";
 import { Helmet } from "react-helmet";
+import { IoNotifications } from "react-icons/io5";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
@@ -54,6 +55,17 @@ const Dashboard = () => {
     } else if (isTutor) {
       return (
         <>
+          <li>
+            <NavLink
+              to={"/dashboard/notification"}
+              style={{ fontSize: "17px" }}
+              className={({ isActive }) =>
+                isActive ? activeLink.join(" ") : normalLink
+              }
+            >
+              <IoNotifications /> Notification
+            </NavLink>
+          </li>
           <li>
             <NavLink
               to={"/dashboard/createSession"}
@@ -115,9 +127,9 @@ const Dashboard = () => {
     } else {
       return (
         <div className="">
-              <Helmet>
-        <title>CodeJourney - Dashboard</title>
-      </Helmet>
+          <Helmet>
+            <title>CodeJourney - Dashboard</title>
+          </Helmet>
           <li>
             <NavLink
               to={"/dashboard/bookedSession"}

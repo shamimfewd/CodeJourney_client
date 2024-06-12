@@ -32,6 +32,7 @@ import TutorRoute from "./TutorRoute";
 import UpdatePrice from "../Pages/Dashboard/Admin/UpdatePrice";
 import ErrorPage from "../Components/ErrorPage";
 import SingleBooked from "../Pages/Dashboard/Student/SingleBooked";
+import Notification from "../Components/Notification";
 
 const router = createBrowserRouter([
   {
@@ -187,6 +188,15 @@ const router = createBrowserRouter([
       },
 
       // tutor routes
+
+      {
+        path: "notification",
+        element: (
+          <TutorRoute>
+            <Notification />
+          </TutorRoute>
+        ),
+      },
 
       {
         path: "createSession",
