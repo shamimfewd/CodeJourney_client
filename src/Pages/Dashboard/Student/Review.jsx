@@ -18,7 +18,7 @@ const Review = ({ id }) => {
     };
 
     const studentReview = await axiosSecure.post("/feedBack", reviewItem);
-    console.log(studentReview.data);
+  
     if (studentReview.data.insertedId) {
       Swal.fire({
         position: "top-end",

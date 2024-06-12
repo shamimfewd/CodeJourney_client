@@ -34,13 +34,13 @@ Live Link:
 
 ## Characteristic 
 
-This website uses Reactjs to create a nice-looking design and features. It's specifically designed for a Collaborative Study Platform. It uses 'react-router dom' so you can easily navigate between pages without the page reloading each time. you can add session and delete session and update session easily, There are more then 10 pages in total, with three accessible from the navigation bar without and one dynamic pages for item details and update items.
+This website uses React.js to create a nice-looking design and features. It's specifically designed for a Collaborative Study Platform. It uses 'react-router dom' so you can easily navigate between pages without the page reloading each time. you can add session and delete session and update session easily, There are more then 10 pages in total, with three accessible from the navigation bar without and one dynamic pages for item details and update items.
 
 - payment system (you can payment with stripe)
 - Dashboard based on your role(there are three roles in this website like: student, tutor, and admin)
 - student is a normal user who can buy a session from here.
-- tutor is a midlevel user who can post a session and manage that
+- tutor is a medieval user who can post a session and manage that
 - admin is a warner of the site he can make anyone tutor,student and admin 
 
-if you want to enjoy all of the features you must have to register or logiin 
+if you want to enjoy all of the features you must have to register or login 
 

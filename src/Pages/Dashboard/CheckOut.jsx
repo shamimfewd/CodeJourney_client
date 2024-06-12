@@ -17,7 +17,7 @@ const CheckOut = ({ item, closeModal }) => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const navigate = useNavigate();
-
+console.log(user);
   useEffect(() => {
     // fetch client secret
     if (item?.price && item?.price > 1) {
@@ -29,7 +29,7 @@ const CheckOut = ({ item, closeModal }) => {
   // get client secret
   const getClientSecret = async (price) => {
     const { data } = await axiosSecure.post("/create-payment-intent", price);
-  
+
     setClientSecret(data.clientSecret);
   };
 
@@ -81,10 +81,13 @@ const CheckOut = ({ item, closeModal }) => {
 
     if (paymentIntent.status === "succeeded") {
       // 1  create payment info obj
+      delete item._id;
       const paymentInfo = {
         ...item,
         transactionId: paymentIntent.id,
         date: new Date(),
+        email: user?.email,
+        name: user?.displayName,
       };
 
       try {
@@ -92,7 +95,7 @@ const CheckOut = ({ item, closeModal }) => {
           "/purchaseSession",
           paymentInfo
         );
-     
+
         closeModal();
         Swal.fire({
           position: "top-end",
@@ -128,22 +131,21 @@ const CheckOut = ({ item, closeModal }) => {
           }}
         />
         <div className="flex justify-between">
+          <button
+            className="btn text-white bg-[#1E90FF] "
+            type="submit"
+            disabled={!stripe || !clientSecret || processing}
+          >
+            {processing ? (
+              <ImSpinner9 className="animate-spin m-auto" />
+            ) : (
+              `Pay $${item?.price}`
+            )}
+          </button>
 
-    
-        <button
-          className="btn text-white bg-[#1E90FF] "
-          type="submit"
-          disabled={!stripe || !clientSecret || processing}
-        >
-          {processing ? (
-            <ImSpinner9 className="animate-spin m-auto" />
-          ) : (
-            `Pay $${item?.price}`
-          )}
-        </button>
-
-
-        <button onClick={closeModal} className="btn bg-[#FF6347] text-white">Cancel</button>
+          <button onClick={closeModal} className="btn bg-[#FF6347] text-white">
+            Cancel
+          </button>
         </div>
       </form>
 

@@ -39,16 +39,16 @@ const BookingPage = () => {
     //   "/bookingSession",
     //   sessionItem
     // );
-    //   if (bookedSession.data.insertedId) {
-    //     Swal.fire({
-    //       position: "top-end",
-    //       icon: "success",
-    //       title: `Booked successfully`,
-    //       showConfirmButton: false,
-    //       timer: 1500,
-    //     });
-    //     navigate("/");
-    //   }
+    // if (bookedSession.data.insertedId) {
+    //   Swal.fire({
+    //     position: "top-end",
+    //     icon: "success",
+    //     title: `Booked successfully`,
+    //     showConfirmButton: false,
+    //     timer: 1500,
+    //   });
+    //   navigate("/");
+    // }
   };
 
   function openModal(item) {
@@ -57,7 +57,6 @@ const BookingPage = () => {
   }
 
   function afterOpenModal() {
-    // references are now sync'd and can be accessed.
     subtitle.style.color = "#f00";
   }
 
@@ -67,7 +66,7 @@ const BookingPage = () => {
   }
   return (
     <div className="mt-10">
-      <SectionTitle heading={'Confirm Order'}/>
+      <SectionTitle heading={"Confirm Order"} />
       <form onSubmit={handleSubmit(onSubmit)} className="w-8/12 mx-auto">
         <div>
           <label className="form-control w-full MY-6">
@@ -121,7 +120,7 @@ const BookingPage = () => {
                 type="email"
                 placeholder="tutor email"
                 // {...register("tutorEmail", { required: true })}
-                defaultValue={currentSession.tutorEmail}
+                defaultValue={currentSession.email}
                 className="input input-bordered w-full "
               />
             </label>
@@ -167,7 +166,6 @@ const BookingPage = () => {
           </div>
         </div>
 
-       
         <div className="w-full">
           <label className="form-control w-full MY-6">
             <div className="label">
@@ -215,7 +213,10 @@ const BookingPage = () => {
           />
         </div>
 
-        <button onClick={() => openModal(currentSession)} className="btn bg-[#1E90FF] text-white">
+        <button
+          onClick={() => openModal(currentSession)}
+          className="btn bg-[#1E90FF] text-white"
+        >
           Confirm Booking
         </button>
       </form>

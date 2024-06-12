@@ -1,12 +1,18 @@
-import moment from "moment-timezone";
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import Review from "./Review";
 import ShowReview from "../../../Components/ShowReview";
+import moment from "moment-timezone";
+import { useState } from "react";
+import useAuth from "../../../Hooks/useAuth";
 
-const BookedDetails = () => {
+const SingleBooked = () => {
   const loadedData = useLoaderData();
+  const { user } = useAuth();
+  const [sessionData, setSessionData] = useState(loadedData);
+
   const { id } = useParams();
-  const currentData = loadedData.find((item) => item._id === id);
+
+  const currentData = sessionData.find((item) => item._id === id);
 
   if (!currentData) {
     return <div>Session not found</div>;
@@ -29,7 +35,7 @@ const BookedDetails = () => {
   const convertToBST = (timeString) => {
     return moment(timeString)
       .tz("Asia/Dhaka")
-      .format("MMMM Do YYYY, h:mm:ss a z");
+      .format("MMMM Do YYYY");
   };
 
   const currentDate = new Date();
@@ -108,4 +114,4 @@ const BookedDetails = () => {
   );
 };
 
-export default BookedDetails;
+export default SingleBooked;

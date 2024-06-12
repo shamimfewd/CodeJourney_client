@@ -25,16 +25,19 @@ import MyMaterials from "../Pages/Dashboard/Tutor/MyMaterials";
 import EditMaterial from "../Pages/Dashboard/Tutor/EditMaterial";
 import ViewAllNotes from "../Pages/Dashboard/Tutor/ViewAllNotes";
 import BookingPage from "../Pages/BookingPage";
-import BookedDetails from "../Pages/Dashboard/Student/BookedDetails";
+
 import AllMaterials from "../Pages/Dashboard/Student/AllMaterials";
 import Payment from "../Pages/Dashboard/Payment";
 import TutorRoute from "./TutorRoute";
 import UpdatePrice from "../Pages/Dashboard/Admin/UpdatePrice";
+import ErrorPage from "../Components/ErrorPage";
+import SingleBooked from "../Pages/Dashboard/Student/SingleBooked";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -47,7 +50,7 @@ const router = createBrowserRouter([
             <BookingPage />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/session"),
+        loader: () => fetch("https://assignment12-server-inky.vercel.app/session"),
       },
       {
         path: "/details/:id",
@@ -56,16 +59,7 @@ const router = createBrowserRouter([
             <SessionDetails />
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/sessionDetails"),
-      },
-      {
-        path: "/bookedDetails/:id",
-        element: (
-          <PrivateRoute>
-            <BookedDetails />
-          </PrivateRoute>
-        ),
-        loader: () => fetch("http://localhost:5000/bookedDetail"),
+        loader: () => fetch("https://assignment12-server-inky.vercel.app/sessionDetails"),
       },
     ],
   },
@@ -107,12 +101,24 @@ const router = createBrowserRouter([
         path: "updateNote/:id",
         element: <UpdateNote />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/upNote/${params.id}`),
+          fetch(`https://assignment12-server-inky.vercel.app/upNote/${params.id}`),
       },
       {
         path: "payment",
         element: <Payment />,
       },
+
+      {
+        path: "singleBooked/:id",
+        element: <SingleBooked />,
+        loader: () => fetch(`https://assignment12-server-inky.vercel.app/bookedeStudent`),
+      },
+
+      // {
+      //   path: "/bookedDetail/:id",
+      //   element: <BookedDetails />,
+      //   loader: () => fetch("https://assignment12-server-inky.vercel.app/bookedDetail"),
+      // },
 
       // admin routes
 
@@ -140,7 +146,7 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/users/${params.id}`),
+          fetch(`https://assignment12-server-inky.vercel.app/users/${params.id}`),
       },
 
       {
@@ -151,7 +157,7 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/session/${params.id}`),
+          fetch(`https://assignment12-server-inky.vercel.app/session/${params.id}`),
       },
 
       {
@@ -162,7 +168,7 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/upSession/${params.id}`),
+          fetch(`https://assignment12-server-inky.vercel.app/upSession/${params.id}`),
       },
 
       {
@@ -181,7 +187,7 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/updatePrice/${params.id}`),
+          fetch(`https://assignment12-server-inky.vercel.app/updatePrice/${params.id}`),
       },
 
       // tutor routes
@@ -228,7 +234,7 @@ const router = createBrowserRouter([
           </TutorRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/upMaterial/${params.id}`),
+          fetch(`https://assignment12-server-inky.vercel.app/upMaterial/${params.id}`),
       },
 
       {

@@ -33,7 +33,7 @@ const AllUsers = () => {
   // useEffect(() => {
   //   const getData = async () => {
   //     const { data } = await axios(
-  //       `http://localhost:5000/dashboard/users?search=${search}`
+  //       `https://assignment12-server-inky.vercel.app/dashboard/users?search=${search}`
   //     );
   //     setAllUsers(data);
   //   };
