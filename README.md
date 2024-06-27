@@ -1,11 +1,5 @@
-
-# Assignment 12 B9
-# assignment_category_0023
-
-## Assessment Introduction: Collaborative Study Platform
-
-## Project Name is : CodeJourney
-
+## Project Name is: CodeJourney
+## Project Type: Collaborative Study Platform
 Live Link: https://cozy-empanada-89974c.netlify.app/
 ## Features 
 - authentication system
