@@ -8,7 +8,7 @@ Live Link: https://cozy-empanada-89974c.netlify.app/
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/your-repo-name.git
+   git clone https://github.com/shamimfewd/CodeJourney_client.git
     cd your-repo-name
     ```
 
