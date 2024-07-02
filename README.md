@@ -70,7 +70,7 @@ npm run dev
 - express.js
 - tailwind css
 
-## Characteristic 
+## Project Overview
 
 This website uses React.js to create a nice-looking design and features. It's specifically designed for a Collaborative Study Platform. It uses 'react-router dom' so you can easily navigate between pages without the page reloading each time. you can add a session delete a session and update a session easily, There are more than 10 pages in total, with three accessible from the navigation bar and one dynamic page for item details and update items.
 
