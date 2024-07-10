@@ -2,9 +2,13 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { MdLogin } from "react-icons/md";
 import { CgLogOut } from "react-icons/cg";
+import useAdmin from "../Hooks/useAdmin";
+import useTutor from "../Hooks/useTutor";
 
 const Nav = () => {
   const { user, logOut } = useAuth();
+  const [isAdmin] = useAdmin();
+  const [isTutor] = useTutor();
 
   // log out
   const handleLogOut = () => {
@@ -19,7 +23,7 @@ const Nav = () => {
   const normalLink = "";
 
   const navOption = (
-    <> 
+    <>
       <li>
         <NavLink
           to={"/"}
@@ -31,6 +35,52 @@ const Nav = () => {
           Home
         </NavLink>
       </li>
+
+      {/* {user &&
+        (isAdmin ? (
+          <li>
+            <NavLink
+              to={"/dashboard/allUser"}
+              style={{ fontSize: "20px" }}
+              className={({ isActive }) => (isActive ? activeLink : normalLink)}
+            >
+              Dashboard a
+            </NavLink>
+          </li>
+        ) : user && isTutor ? (
+          <li>
+            <NavLink
+              to={"/dashboard/createSession"}
+              style={{ fontSize: "20px" }}
+              className={({ isActive }) => (isActive ? activeLink : normalLink)}
+            >
+              Dashboard t
+            </NavLink>
+          </li>
+        ) : (
+          <li>
+            <NavLink
+              to={"/dashboard/bookedSession"}
+              style={{ fontSize: "20px" }}
+              className={({ isActive }) => (isActive ? activeLink : normalLink)}
+            >
+              Dashboard s
+            </NavLink>
+          </li>
+        ))} */}
+
+      {/* {user && isTutor && (
+        <li>
+          <NavLink
+            to={"/dashboard/createSession"}
+            style={{ fontSize: "20px" }}
+            className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          >
+            Dashboard t
+          </NavLink>
+        </li>
+      )} */}
+
       {user && (
         <li>
           <NavLink

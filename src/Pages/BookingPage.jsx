@@ -13,7 +13,7 @@ const BookingPage = () => {
   const [currentItem, setCurrentItem] = useState("");
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const loadedData = useLoaderData();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,33 +22,35 @@ const BookingPage = () => {
 
   const onSubmit = async (data) => {
     // reset();
-    // const sessionItem = {
-    //   title: data.title,
-    //   tutorName: data.tutorName,
-    //   tutorEmail: data.tutorEmail,
-    //   registrationStart: new Date(data.registrationStart),
-    //   registrationEnd: new Date(data.registrationEnd),
-    //   description: data.description,
-    //   classStart: data.classStart,
-    //   classEnd: data.classEnd,
-    //   price: parseInt(data.price),
-    //   userEmail: user.email,
-    //   status: "Pending",
-    // };
-    // const bookedSession = await axiosSecure.post(
-    //   "/bookingSession",
-    //   sessionItem
-    // );
-    // if (bookedSession.data.insertedId) {
-    //   Swal.fire({
-    //     position: "top-end",
-    //     icon: "success",
-    //     title: `Booked successfully`,
-    //     showConfirmButton: false,
-    //     timer: 1500,
-    //   });
-    //   navigate("/");
-    // }
+    const sessionItem = {
+      title: data.title,
+      tutorName: data.tutorName,
+      tutorEmail: data.tutorEmail,
+      registrationStart: new Date(data.registrationStart),
+      registrationEnd: new Date(data.registrationEnd),
+      description: data.description,
+      classStart: data.classStart,
+      classEnd: data.classEnd,
+      price: parseInt(data.price),
+      userEmail: user.email,
+      status: "Pending",
+    };
+    const bookedSession = await axiosSecure.post(
+      "/purchaseSession",
+      sessionItem
+    );
+
+    console.log(bookedSession);
+    if (bookedSession.data.insertedId) {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `Booked successfully`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/");
+    }
   };
 
   function openModal(item) {
@@ -80,7 +82,7 @@ const BookingPage = () => {
               type="text"
               disabled
               placeholder="session title"
-              // {...register("title", { required: true })}
+              {...register("title", { required: true })}
               defaultValue={currentSession.title}
               className="input input-bordered w-full "
             />
@@ -100,7 +102,7 @@ const BookingPage = () => {
                 type="text"
                 disabled
                 placeholder="tutor name"
-                // {...register("tutorName", { required: true })}
+                {...register("tutorName", { required: true })}
                 defaultValue={currentSession.tutorName}
                 className="input input-bordered w-full "
               />
@@ -119,7 +121,7 @@ const BookingPage = () => {
                 disabled
                 type="email"
                 placeholder="tutor email"
-                // {...register("tutorEmail", { required: true })}
+                {...register("tutorEmail", { required: true })}
                 defaultValue={currentSession.email}
                 className="input input-bordered w-full "
               />
@@ -139,7 +141,7 @@ const BookingPage = () => {
               <input
                 type="date"
                 disabled
-                // {...register("registrationStart", { required: false })}
+                {...register("registrationStart", { required: false })}
                 placeholder="session start"
                 defaultValue={currentSession.registrationStart}
                 className="input input-bordered w-full "
@@ -157,7 +159,7 @@ const BookingPage = () => {
               <input
                 type="date"
                 disabled
-                // {...register("registrationEnd", { required: false })}
+                {...register("registrationEnd", { required: false })}
                 placeholder="session end"
                 defaultValue={currentSession.registrationEnd}
                 className="input input-bordered w-full "
@@ -178,7 +180,7 @@ const BookingPage = () => {
             <input
               type="number"
               disabled
-              // {...register("price", { required: true })}
+              {...register("price", { required: true })}
               placeholder="Price"
               defaultValue={currentSession.price}
               className="input input-bordered w-full "
@@ -194,7 +196,7 @@ const BookingPage = () => {
               </span>
             </div>
             <textarea
-              // {...register("description", { required: true })}
+              {...register("description", { required: true })}
               disabled
               className="textarea textarea-bordered h-24"
               defaultValue={currentSession.description}
@@ -212,13 +214,21 @@ const BookingPage = () => {
             item={currentItem}
           />
         </div>
-
-        <button
-          onClick={() => openModal(currentSession)}
-          className="btn bg-[#1E90FF] text-white"
-        >
-          Confirm Booking
-        </button>
+        <button type="submit" className="btn bg-[#1E90FF] text-white">
+            Confirm Booking Free
+          </button>
+        {/* {currentSession.price > 1 ? (
+          <>
+            <button type="button"
+              onClick={() => openModal(currentSession)}
+              className="btn bg-[#1E90FF] text-white"
+            >
+              Confirm Booking
+            </button>
+          </>
+        ) : (
+        ""
+        )} */}
       </form>
     </div>
   );
