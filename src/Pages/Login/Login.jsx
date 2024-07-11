@@ -39,6 +39,7 @@ const Login = () => {
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,
+          role: "student",
         };
         axiosPublic.post("/users", userInfo).then((res) => {
           console.log(res.data);
@@ -56,6 +57,7 @@ const Login = () => {
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,
+          role: "student",
         };
         axiosPublic.post("/users", userInfo).then((res) => {
           console.log(res.data);

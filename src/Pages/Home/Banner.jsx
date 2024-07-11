@@ -9,7 +9,7 @@ const Banner = () => {
             <div className="max-w-xl">
               <h1 className="text-6xl leading-normal text-gray-800 font-semibold  dark:text-white ">
                 Begin Your {""}
-                <span className="text-[#FF6347] dark:text-blue-400">
+                <span className="text-[#1E90FF] dark:text-blue-400">
                   Coding Journey
                 </span>
                 {""} with Us
@@ -24,7 +24,7 @@ const Banner = () => {
               </p>
 
               <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
-                <button className="btn mr-4 btn-outline text-white border-none bg-[#1E90FF] ">
+                <button className="btn mr-4 rounded-sm btn-outline text-white border-none hover:bg-[#1E90FF] bg-[#1E90FF] ">
                   {" "}
                   Get Started
                 </button>
@@ -37,14 +37,47 @@ const Banner = () => {
             </div>
           </div>
 
-          <div className="w-full h-64 lg:w-1/2 lg:h-auto pr-10">
-            <div
-              className="w-full h-full bg-cover object-cover"
-              style={{
-                backgroundImage: `url(${banerImg})`,
-              }}
-            >
-              <div className="w-full h-full bg-black opacity-25"></div>
+          <div className="w-full h-64 lg:w-1/2 lg:h-auto pr-10 grid grid-cols-2 gap-6">
+            <div className="shadow-2xl  h-80  rounded-full mt-20 relative">
+              <img
+                src="/dote_img.jpg"
+                alt=""
+                className="  absolute -top-16 opacity-25 -left-20 "
+              />
+              <div className="relative">
+                <img
+                  src="https://images.pexels.com/photos/12902857/pexels-photo-12902857.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt=""
+                  className="rounded-3xl shadow-xl"
+                />
+              </div>
+            </div>
+
+            <div className="shadow-2xl w-48 h-24 rounded-2xl mt-10">
+              <img
+                src="https://images.pexels.com/photos/2102415/pexels-photo-2102415.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt=""
+                className="rounded-3xl shadow-xl"
+              />
+            </div>
+            <div className=" w-60  -ml-10 -mb-10 bg-tr">
+              <div className="bg-white p-4 rounded-2xl relative shadow-2xl">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/3177/3177336.png"
+                  alt=""
+                  className="w-10 h-10 absolute -top-6 -left-2 "
+                />
+                <p className="text-lg text-gray-600  ">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                </p>
+              </div>
+            </div>
+            <div className="shadow-2xl w-60  rounded-2xl -mt-16 ">
+              <img
+                src="https://images.pexels.com/photos/6285288/pexels-photo-6285288.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt=""
+                className="rounded-3xl shadow-xl "
+              />
             </div>
           </div>
         </div>

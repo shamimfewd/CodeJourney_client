@@ -3,17 +3,16 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 
-
 const UpdateSession = () => {
   const axiosSecure = useAxiosSecure();
   const loadedData = useLoaderData();
+
   const { _id } = loadedData;
  
 
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
-
     const menuItem = {
       title: data.title,
       tutorName: data.tutorName,
@@ -36,7 +35,6 @@ const UpdateSession = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      
     }
   };
 
