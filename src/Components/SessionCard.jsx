@@ -77,7 +77,7 @@ const SessionCard = ({ card }) => {
                 </div>
                 <div>
                   <Link to={`/details/${_id}`}>
-                    <button className="btn text-xs font-bold text-white uppercase bg-[#1E90FF] btn-md ">
+                    <button className="btn rounded-sm text-xs font-bold text-white uppercase bg-[#1E90FF] hover:bg-[#1E90FF] btn-md ">
                       Read More
                     </button>
                   </Link>

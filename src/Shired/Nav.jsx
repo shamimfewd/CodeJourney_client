@@ -2,13 +2,14 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { MdLogin } from "react-icons/md";
 import { CgLogOut } from "react-icons/cg";
-import useAdmin from "../Hooks/useAdmin";
-import useTutor from "../Hooks/useTutor";
+// import useAdmin from "../Hooks/useAdmin";
+// import useTutor from "../Hooks/useTutor";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Nav = () => {
   const { user, logOut } = useAuth();
-  const [isAdmin] = useAdmin();
-  const [isTutor] = useTutor();
+  // const [isAdmin] = useAdmin();
+  // const [isTutor] = useTutor();
 
   // log out
   const handleLogOut = () => {
@@ -19,7 +20,7 @@ const Nav = () => {
       });
   };
 
-  const activeLink = ["bg-[#FF6347]", "text-white"];
+  const activeLink = ["text-[#1E90FF]"];
   const normalLink = "";
 
   const navOption = (
@@ -27,7 +28,7 @@ const Nav = () => {
       <li>
         <NavLink
           to={"/"}
-          style={{ fontSize: "20px" }}
+          style={{ fontSize: "18px" }}
           className={({ isActive }) =>
             isActive ? activeLink.join(" ") : normalLink
           }
@@ -85,7 +86,7 @@ const Nav = () => {
         <li>
           <NavLink
             to={"/dashboard"}
-            style={{ fontSize: "20px" }}
+            style={{ fontSize: "18px" }}
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
           >
             Dashboard
@@ -93,17 +94,17 @@ const Nav = () => {
         </li>
       )}
 
-      {!user && (
+      {/* {!user && (
         <li>
           <NavLink
             to={"/register"}
-            style={{ fontSize: "20px", listStyle: "none" }}
+            style={{ fontSize: "18px", listStyle: "none" }}
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
           >
             Register
           </NavLink>
         </li>
-      )}
+      )} */}
     </>
   );
   return (
@@ -135,15 +136,15 @@ const Nav = () => {
             </ul>
           </div>
 
-          <Link to={"/"} className="text-[#1E90FF] text-2xl font-bold">
-            <span className="text-[#FF6347]">Code</span>Journey
+          <Link to={"/"} className="text-[#1E90FF] text-3xl font-bold">
+            <span className="text-gray-800 font-bold">Code</span>Journey
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navOption}</ul>
         </div>
-        <div className="navbar-end pr-10 ">
-          {user ? (
+        <div className="navbar-end  pr-2 lg:pr-10 ">
+          {/* {user ? (
             <>
               <div
                 className="tooltip tooltip-bottom mr-2"
@@ -158,7 +159,7 @@ const Nav = () => {
 
               <button
                 onClick={handleLogOut}
-                className="btn text-lg text-white bg-[#FF6347]"
+                className="btn  text-red-600 bg-[#ff634784]"
               >
                 <CgLogOut /> Log Out
               </button>
@@ -171,6 +172,82 @@ const Nav = () => {
                   <MdLogin /> Login
                 </button>
               </Link>
+            </>
+          )} */}
+
+          {user ? (
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn rounded-full bg-white hover:bg-white border-[#1E90FF] hover:border-[#1E90FF]  hover:border "
+              >
+                <div className="flex justify-between gap-4 items-center">
+                  {user && (
+                    <RxHamburgerMenu className="text-2xl text-[#1E90FF]" />
+                  )}
+                  <div className="w-10 rounded-full">
+                    {user && (
+                      <>
+                        <div>
+                          <img
+                            className="rounded-full"
+                            src={user.photoURL}
+                            alt=""
+                          />
+                        </div>
+                        {user.status}
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              >
+                <li>
+                  <a className="justify-between">
+                    Profile
+                    <span className="badge">New</span>
+                  </a>
+                </li>
+                <li>
+                  <a>Settings</a>
+                </li>
+                <li>
+                  <button onClick={handleLogOut} className="btn  text-red-600">
+                    <CgLogOut className="text-lg" /> Log Out
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <>
+              <div className="flex border justify-between gap-4 items-center rounded-full bg-white hover:bg-white p-2 border-[#1E90FF] hover:border-[#1E90FF]  hover:border ">
+                <li className="list-none">
+                  <NavLink
+                    to={"/register"}
+                    style={{
+                      fontSize: "18px",
+                      listStyle: "none",
+                      color: "#1E90FF",
+                    }}
+                    className={({ isActive }) =>
+                      isActive ? activeLink : normalLink
+                    }
+                  >
+                    Register
+                  </NavLink>
+                </li>
+                <div className="divider lg:divider-horizontal"></div>
+                <Link to={"/login"}>
+                  {/* <MdLogin className="text-2xl text-[#1E90FF]" /> */}
+                  <span className="w-10 rounded-full text-[#1E90FF] text-lg">
+                    Login
+                  </span>
+                </Link>
+              </div>
             </>
           )}
         </div>

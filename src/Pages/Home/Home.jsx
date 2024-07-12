@@ -9,7 +9,9 @@ const Home = () => {
       <Helmet>
         <title>CodeJourney - Home</title>
       </Helmet>
+
       <Banner />
+      <br />
       <StudySession />
       <TutorSection />
     </div>
