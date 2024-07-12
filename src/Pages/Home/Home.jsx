@@ -2,6 +2,7 @@ import TutorSection from "../../Components/TutorSection";
 import Banner from "./Banner";
 import StudySession from "./StudySession";
 import { Helmet } from "react-helmet";
+import Support from "./Support";
 
 const Home = () => {
   return (
@@ -11,7 +12,7 @@ const Home = () => {
       </Helmet>
 
       <Banner />
-      <br />
+      <Support />
       <StudySession />
       <TutorSection />
     </div>
