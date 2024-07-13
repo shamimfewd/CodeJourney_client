@@ -24,10 +24,10 @@ const SessionCard = ({ card }) => {
 
   return (
     <div>
-      <div className="  bg-white rounded-lg shadow-lg dark:bg-gray-800">
-        <div className=" flex justify-between flex-col h-[14rem] p-4 md:p-4">
+      <div className=" bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <div className=" flex justify-between flex-col h-[14rem] p-6 md:p-4">
           <div>
-            <h3 className="text-xl font-bold text-gray-800 dark:text-white">
+            <h3 className="text-lg font-bold text-gray-800 dark:text-white">
               {title}
             </h3>
 
@@ -35,7 +35,7 @@ const SessionCard = ({ card }) => {
               title={description}
               className="mt-2 text-sm text-gray-600 dark:text-gray-400"
             >
-              {description.slice(0, 30)}...
+              {description.slice(0, 80)}...
             </p>
           </div>
 
@@ -77,7 +77,7 @@ const SessionCard = ({ card }) => {
                 </div>
                 <div>
                   <Link to={`/details/${_id}`}>
-                    <button className="btn rounded-sm text-xs font-bold text-white uppercase bg-[#1E90FF] hover:bg-[#1E90FF] btn-md ">
+                    <button className="btn rounded-sm  text-white  bg-[#1E90FF] hover:bg-[#1E90FF] btn-md ">
                       Read More
                     </button>
                   </Link>
