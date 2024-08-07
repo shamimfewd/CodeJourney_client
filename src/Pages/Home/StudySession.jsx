@@ -3,6 +3,7 @@ import SessionCard from "../../Components/SessionCard";
 
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useState } from "react";
+import SectionTitle from "../../Shired/SectionTitle";
 // import { Link } from "react-router-dom";
 
 const StudySession = () => {
@@ -25,10 +26,7 @@ const StudySession = () => {
   return (
     <div className="my-24 max-w-7xl mx-auto">
       <div className="text-center mb-10">
-        <p className="text-[#FF6347]">---Select According to Your Needs---</p>
-        <h2 className="text-4xl font-bold text-gray-800">
-          Our Popular Sessions
-        </h2>
+        <SectionTitle heading={"Our Popular Sessions"} />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

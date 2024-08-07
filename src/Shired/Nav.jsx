@@ -136,7 +136,10 @@ const Nav = () => {
             </ul>
           </div>
 
-          <Link to={"/"} className="text-[#1E90FF] text-3xl font-bold">
+          <Link
+            to={"/"}
+            className="text-[#1E90FF] text-2xl md:text-3xl lg:text-3xl font-bold"
+          >
             <span className="text-gray-800 font-bold">Code</span>Journey
           </Link>
         </div>

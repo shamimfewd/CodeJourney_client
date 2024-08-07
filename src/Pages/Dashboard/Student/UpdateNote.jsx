@@ -3,17 +3,15 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import { useLoaderData } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import SectionTitle from "../../../Shired/SectionTitle";
 
 const UpdateNote = () => {
-
   const axiosSecure = useAxiosSecure();
 
   const loadedData = useLoaderData();
   const { _id } = loadedData;
- 
 
   const { register, handleSubmit } = useForm();
-
 
   const onSubmit = async (data) => {
     const noteItem = {
@@ -38,11 +36,13 @@ const UpdateNote = () => {
   };
   return (
     <div>
-            <Helmet>
+      <Helmet>
         <title>CodeJourney - Dashboard/Update Note</title>
       </Helmet>
-      <h1>update page</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="lg:mt-10 md:mt-6">
+        <SectionTitle heading={"Update Your Note"} />
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="w-8/12 mx-auto">
         <div>
           <label className="form-control w-full MY-6">
             <div className="label">
@@ -95,8 +95,10 @@ const UpdateNote = () => {
             ></textarea>
           </label>
         </div>
-
-        <button className="btn">Add Note</button>
+        <br />
+        <button className="btn rounded-sm bg-[#1E90FF] text-white">
+          Update Note
+        </button>
       </form>
     </div>
   );

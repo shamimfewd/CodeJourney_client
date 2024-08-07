@@ -9,7 +9,7 @@ const Support = () => {
   return (
     <div className="bg-[#1E90FF]">
       <div className="max-w-7xl mx-auto mt-24 bg-[#1E90FF]">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 p-4 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
           <div className="text-center mx-auto text-[#ffffffe1]">
             <MdSupportAgent className="text-6xl  text-center mx-auto" />
 

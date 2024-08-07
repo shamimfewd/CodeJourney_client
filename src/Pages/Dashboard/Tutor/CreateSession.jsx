@@ -195,7 +195,7 @@ const CreateSession = () => {
                   <span className="text-orange-600">*</span>
                 </span>
               </div>
-              <textarea
+              <textarea 
                 {...register("description", { required: true })}
                 className="textarea textarea-bordered h-24"
                 placeholder="description"

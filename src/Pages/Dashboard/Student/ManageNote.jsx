@@ -38,8 +38,6 @@ const ManageNote = () => {
               text: "Your file has been deleted.",
               icon: "success",
             });
-
-        
           }
         });
       }
@@ -48,8 +46,10 @@ const ManageNote = () => {
 
   return (
     <div>
-      <SectionTitle heading={"Manage Your Note"} />
-      <h3 className="font-bold">Total Notes:{notes.length}</h3>
+      <div className="lg:mt-10 md:mt-6">
+        <SectionTitle heading={"Manage Your Note"} />
+      </div>
+      <h3 className="border p-2 lg:mb-6 mr-4">Total Notes: {notes.length}</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {notes.map((note) => (
           <div key={note._id}>

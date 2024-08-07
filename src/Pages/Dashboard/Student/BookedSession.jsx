@@ -15,9 +15,9 @@ const BookedSession = () => {
     },
   });
   return (
-    <div className="lg:mx-10">
+    <div className="lg:mt-10 md:mt-6">
       <SectionTitle heading={"My Booked Session"} />
-      <h3 className="font-bold">booked session: {sessions.length}</h3>
+      <h3 className="border p-2 lg:mb-6 mr-4">Booked Session: {sessions.length}</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {sessions.map((session) => (
           <div key={session._id} className="card  bg-base-100 shadow-xl">

@@ -28,13 +28,13 @@ const CreateNote = () => {
         timer: 1500,
       });
     }
-
-    console.log(data);
   };
   return (
     <div>
-      <SectionTitle heading={"Create Note"} />
-      <form className="w-8/12 mx-auto" onSubmit={handleSubmit(onSubmit)}>
+      <div className="lg:mt-10 md:mt-6">
+        <SectionTitle heading={"Create Note"} />
+      </div>
+      <form className="w-8/12 mx-auto space-y-4" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label className="form-control w-full MY-6">
             <div className="label">
@@ -43,6 +43,7 @@ const CreateNote = () => {
                 <span className="text-orange-600">*</span>
               </span>
             </div>
+
             <input
               type="text"
               placeholder="note title"
@@ -81,12 +82,14 @@ const CreateNote = () => {
             <textarea
               {...register("description", { required: true })}
               className="textarea textarea-bordered h-24"
-              placeholder="description"
+              placeholder="note description"
             ></textarea>
           </label>
         </div>
-<br />
-        <button className="btn bg-[#1E90FF] text-white">Add Note</button>
+        <br />
+        <button className="btn bg-[#1E90FF] hover:bg-[#1E90FF] rounded-sm text-white">
+          Create Note
+        </button>
       </form>
     </div>
   );

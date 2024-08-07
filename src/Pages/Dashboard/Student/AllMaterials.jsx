@@ -58,7 +58,7 @@ const AllMaterials = () => {
     const element = document.createElement("a");
     const file = new Blob([blob], { type: blob.type });
     const extension = blob.type.split("/")[1];
-    
+
     element.href = URL.createObjectURL(file);
     element.download = `image.${extension}`;
     document.body.appendChild(element);
@@ -71,8 +71,10 @@ const AllMaterials = () => {
         <title>CodeJourney - Dashboard/All Materials</title>
       </Helmet>
       <div className="pr-10">
-        <SectionTitle heading={"All Materials"} />
-        <h3 className="font-bold">Total Materials:{materials.length}</h3>
+        <div className="lg:mt-10 md:mt-6">
+          <SectionTitle heading={"All Materials"} />
+        </div>
+        <h3 className="border p-2 lg:mb-6 -mr-4">Total Materials: {materials.length}</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {materials.map((material) => (
             <div
@@ -88,11 +90,11 @@ const AllMaterials = () => {
                 <div className="card-actions justify-end">
                   <button
                     onClick={() => handleDownload(material.image)}
-                    className="btn text-white bg-[#1E90FF] "
+                    className="btn text-white btn-sm bg-[#1E90FF] "
                   >
                     Download
                   </button>
-                  <button className="btn text-white bg-[#1E90FF] ">
+                  <button className="btn text-white btn-sm bg-[#1E90FF] ">
                     <a href={material.link}>Drive Link</a>
                   </button>
                 </div>
@@ -107,7 +109,7 @@ const AllMaterials = () => {
             <button
               disabled={currentPage === 1}
               onClick={() => handlePaginationBtn(currentPage - 1)}
-              className="btn m-1 bg-[#1E90FF] text-white"
+              className="btn m-1 bg-[#1E90FF] hover:bg-[#1E90FF] rounded-sm text-white"
             >
               <BsArrowLeft /> Prev
             </button>
@@ -115,8 +117,10 @@ const AllMaterials = () => {
               <button
                 onClick={() => handlePaginationBtn(btnNum)}
                 key={btnNum}
-                className={`btn m-1 hover:bg-[#1E90FF] hover:text-white ${
-                  currentPage === btnNum ? "bg-[#1E90FF] text-white" : ""
+                className={`btn m-1 hover:bg-[#1E90FF] hover:text-white rounded-sm ${
+                  currentPage === btnNum
+                    ? "bg-[#1E90FF] hover:bg-[#1E90FF] text-white"
+                    : ""
                 }`}
               >
                 {btnNum}
@@ -125,7 +129,7 @@ const AllMaterials = () => {
             <button
               disabled={currentPage === numberOfPages}
               onClick={() => handlePaginationBtn(currentPage + 1)}
-              className={`btn m-1 bg-[#1E90FF] text-white`}
+              className={`btn m-1 bg-[#1E90FF] hover:bg-[#1E90FF] rounded-sm text-white`}
             >
               Next <BsArrowRight />
             </button>

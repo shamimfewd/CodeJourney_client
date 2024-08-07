@@ -100,7 +100,10 @@ const AllUsers = () => {
   return (
     <div>
       <div>
+        <div className="lg:mt-10 md:mt-6">
+
         <SectionTitle heading={"All Users"} />
+        </div>
         <div className="overflow-x-auto lg:ml-10 lg:mr-10">
           <div className="w-1/3">
             <form onSubmit={handleSearch}>
@@ -115,16 +118,15 @@ const AllUsers = () => {
                 />
                 <button
                   type="submit"
-                  className="btn text-white bg-[#1E90FF] -mr-4"
+                  className="btn text-white bg-[#1E90FF] hover:bg-[#1E90FF] -mr-4"
                 >
                   Search
                 </button>
               </label>
             </form>
             <br />
-
-            <h3 className="font-bold">Total Users: {allUsers.length}</h3>
           </div>
+          <h3 className="border p-2">Total Users: {allUsers.length}</h3>
           <table className="table w-full">
             {/* head */}
             <thead className="bg-[#1E90FF]  text-white">
@@ -159,7 +161,7 @@ const AllUsers = () => {
                         onClick={() => handleDelete(user)}
                         className="btn btn-ghost btn-lg"
                       >
-                        <FaTrashAlt className="text-orange-500"/>
+                        <FaTrashAlt className="text-orange-500" />
                       </button>
                     </td>
                   </tr>
