@@ -10,7 +10,6 @@ import BookedSession from "../Pages/Dashboard/Student/BookedSession";
 import CreateNote from "../Pages/Dashboard/Student/CreateNote";
 import ManageNote from "../Pages/Dashboard/Student/ManageNote";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
-
 import CreateSession from "../Pages/Dashboard/Tutor/CreateSession";
 import SessionDetails from "../Pages/SessionDetails";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers";

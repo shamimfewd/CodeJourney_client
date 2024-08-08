@@ -2,14 +2,16 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { MdLogin } from "react-icons/md";
 import { CgLogOut } from "react-icons/cg";
-// import useAdmin from "../Hooks/useAdmin";
-// import useTutor from "../Hooks/useTutor";
+import useAdmin from "../Hooks/useAdmin";
+import useTutor from "../Hooks/useTutor";
 import { RxHamburgerMenu } from "react-icons/rx";
+import useStudent from "../Hooks/useStudent";
 
 const Nav = () => {
   const { user, logOut } = useAuth();
-  // const [isAdmin] = useAdmin();
-  // const [isTutor] = useTutor();
+  const [isAdmin] = useAdmin();
+  const [isTutor] = useTutor();
+  const [isStudent] = useStudent();
 
   // log out
   const handleLogOut = () => {
@@ -37,55 +39,10 @@ const Nav = () => {
         </NavLink>
       </li>
 
-      {/* {user &&
-        (isAdmin ? (
-          <li>
-            <NavLink
-              to={"/dashboard/allUser"}
-              style={{ fontSize: "20px" }}
-              className={({ isActive }) => (isActive ? activeLink : normalLink)}
-            >
-              Dashboard a
-            </NavLink>
-          </li>
-        ) : user && isTutor ? (
-          <li>
-            <NavLink
-              to={"/dashboard/createSession"}
-              style={{ fontSize: "20px" }}
-              className={({ isActive }) => (isActive ? activeLink : normalLink)}
-            >
-              Dashboard t
-            </NavLink>
-          </li>
-        ) : (
-          <li>
-            <NavLink
-              to={"/dashboard/bookedSession"}
-              style={{ fontSize: "20px" }}
-              className={({ isActive }) => (isActive ? activeLink : normalLink)}
-            >
-              Dashboard s
-            </NavLink>
-          </li>
-        ))} */}
-
-      {/* {user && isTutor && (
+      {user && isStudent && (
         <li>
           <NavLink
-            to={"/dashboard/createSession"}
-            style={{ fontSize: "20px" }}
-            className={({ isActive }) => (isActive ? activeLink : normalLink)}
-          >
-            Dashboard t
-          </NavLink>
-        </li>
-      )} */}
-
-      {user && (
-        <li>
-          <NavLink
-            to={"/dashboard"}
+            to={"/dashboard/bookedSession"}
             style={{ fontSize: "18px" }}
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
           >
@@ -94,17 +51,29 @@ const Nav = () => {
         </li>
       )}
 
-      {/* {!user && (
+      {user && isTutor && (
         <li>
           <NavLink
-            to={"/register"}
-            style={{ fontSize: "18px", listStyle: "none" }}
+            to={"/dashboard/createSession"}
+            style={{ fontSize: "18px" }}
             className={({ isActive }) => (isActive ? activeLink : normalLink)}
           >
-            Register
+            Dashboard
           </NavLink>
         </li>
-      )} */}
+      )}
+
+      {user && isAdmin && (
+        <li>
+          <NavLink
+            to={"/dashboard/allUser"}
+            style={{ fontSize: "18px" }}
+            className={({ isActive }) => (isActive ? activeLink : normalLink)}
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
     </>
   );
   return (
@@ -131,9 +100,7 @@ const Nav = () => {
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              {navOption}
-            </ul>
+            ></ul>
           </div>
 
           <Link
@@ -144,7 +111,30 @@ const Nav = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navOption}</ul>
+          <ul className="menu menu-horizontal px-1">
+            {/* ======================================================== */}
+
+            {navOption}
+            {/* {user && isStudent && (
+              <li className="hover:bg-black hover:text-white rounded-full">
+                <Link to="/dashboard/bookedSession">Dashboard</Link>
+              </li>
+            )}
+
+            {user && isTutor && (
+              <li className="hover:bg-black hover:text-white rounded-full">
+                <Link to="/dashboard/createSession">Dashboard</Link>
+              </li>
+            )}
+
+            {user && isAdmin && (
+              <li className="hover:bg-black hover:text-white rounded-full">
+                <Link to="/dashboard/allUser">Dashboard</Link>
+              </li>
+            )} */}
+
+            {/* ===================================================================== */}
+          </ul>
         </div>
         <div className="navbar-end  pr-2 lg:pr-10 ">
           {/* {user ? (
