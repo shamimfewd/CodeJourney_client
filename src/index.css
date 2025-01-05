@@ -7,3 +7,31 @@
 body {
   font-family: "Poppins", sans-serif !important;
 }
+
+.aboutTitleBox {
+  position: relative;
+}
+
+.aboutBefore::before {
+  content: "";
+  display: block;
+  width: 50px;
+  border-radius: 50px;
+  height: 2px;
+  background-color: #1e90ff;
+  position: absolute;
+  left: 7rem;
+  top: 12px;
+}
+
+.aboutAfter::after {
+  content: "";
+  display: block;
+  width: 70px;
+  border-radius: 50px;
+  height: 2px;
+  background-color: #1e90ff;
+  position: absolute;
+  left: 7rem;
+  bottom: 8px;
+}

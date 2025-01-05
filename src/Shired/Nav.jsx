@@ -100,7 +100,9 @@ const Nav = () => {
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            ></ul>
+            >
+              {navOption}
+            </ul>
           </div>
 
           <Link
@@ -111,30 +113,7 @@ const Nav = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            {/* ======================================================== */}
-
-            {navOption}
-            {/* {user && isStudent && (
-              <li className="hover:bg-black hover:text-white rounded-full">
-                <Link to="/dashboard/bookedSession">Dashboard</Link>
-              </li>
-            )}
-
-            {user && isTutor && (
-              <li className="hover:bg-black hover:text-white rounded-full">
-                <Link to="/dashboard/createSession">Dashboard</Link>
-              </li>
-            )}
-
-            {user && isAdmin && (
-              <li className="hover:bg-black hover:text-white rounded-full">
-                <Link to="/dashboard/allUser">Dashboard</Link>
-              </li>
-            )} */}
-
-            {/* ===================================================================== */}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{navOption}</ul>
         </div>
         <div className="navbar-end  pr-2 lg:pr-10 ">
           {/* {user ? (

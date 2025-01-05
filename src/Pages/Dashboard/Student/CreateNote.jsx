@@ -18,12 +18,12 @@ const CreateNote = () => {
     };
 
     const studentNote = await axiosSecure.post("/note", noteItem);
-    console.log(studentNote.data);
+    // console.log(studentNote.data);
     if (studentNote.data.insertedId) {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: `Note Added Successfully `,
+        title: `Note Added Successfully`,
         showConfirmButton: false,
         timer: 1500,
       });

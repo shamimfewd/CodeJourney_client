@@ -76,10 +76,11 @@ const SessionCard = ({ card }) => {
                   )}
                 </div>
                 <div>
-                  <Link to={`/details/${_id}`}>
-                    <button className="btn rounded-sm  text-white  bg-[#1E90FF] hover:bg-[#1E90FF] btn-md ">
+                  <Link to={`/details/${_id}`} className="text-[#1E90FF]">
+                    Read More..
+                    {/* <button className="btn rounded-sm  text-white  bg-[#1E90FF] hover:bg-[#1E90FF] btn-md ">
                       Read More
-                    </button>
+                    </button> */}
                   </Link>
                 </div>
               </div>

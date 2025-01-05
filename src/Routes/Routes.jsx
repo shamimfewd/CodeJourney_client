@@ -6,7 +6,6 @@ import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import PrivateRoute from "./PrivateRoute";
 import BookedSession from "../Pages/Dashboard/Student/BookedSession";
-
 import CreateNote from "../Pages/Dashboard/Student/CreateNote";
 import ManageNote from "../Pages/Dashboard/Student/ManageNote";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome";

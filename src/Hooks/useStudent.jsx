@@ -5,11 +5,13 @@ import useAxiosSecure from "./useAxiosSecure";
 const useStudent = () => {
   const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
+
   const { data: isStudent } = useQuery({
     queryKey: [user?.email, "isStudent"],
     enabled: !loading,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/user/student/${user.email}`);
+      const res = await axiosSecure.get(`/users/student/${user.email}`);
+      console.log(res.data);
       return res.data?.student;
     },
   });
