@@ -35,3 +35,55 @@ body {
   left: 7rem;
   bottom: 8px;
 }
+
+.subtitleBox {
+  position: relative;
+}
+
+.lineBefore::before {
+  content: "";
+  display: block;
+  width: 50px;
+  border-radius: 50px;
+  height: 2px;
+  background-color: #1e90ff;
+  position: absolute;
+  left: 36.5%;
+  top: 10px;
+}
+
+.titleBefore::before {
+  content: "";
+  display: block;
+  width: 70px;
+  border-radius: 50px;
+  height: 2px;
+  background-color: #1e90ff;
+  position: absolute;
+  left: 35%;
+  top: 20px;
+}
+
+.lineAfter::after {
+  content: "";
+  display: block;
+  width: 50px;
+  border-radius: 50px;
+  height: 2px;
+  background-color: #1e90ff;
+  position: absolute;
+  right: 36.5%;
+  top: 10px;
+}
+
+.titleBefore1::after {
+  content: "";
+  display: block;
+  width: 70px;
+  border-radius: 50px;
+  height: 2px;
+  background-color: #1e90ff;
+  position: absolute;
+  right: 35%;
+  top: 20px;
+}
