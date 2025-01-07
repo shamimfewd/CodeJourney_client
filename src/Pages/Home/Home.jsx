@@ -4,6 +4,7 @@ import StudySession from "./StudySession";
 import { Helmet } from "react-helmet";
 import Support from "./Support";
 import AboutUs from "./AboutUs";
+import Testimonial from "./Testimonial";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <AboutUs />
       <StudySession />
       <TutorSection />
+      <Testimonial />
     </div>
   );
 };
